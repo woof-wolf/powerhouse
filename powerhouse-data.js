@@ -866,12 +866,23 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPower
 */
 
 // Common power advantages
-
-dataPowerAlias['AM'] = new PowerAlias('AM', 'Accelerated Metabolism', 'Accelerated Metabolism', null);
-dataPowerAlias['CHAL'] = new PowerAlias('CHAL', 'Challenge!', 'Challenge!', null);
-dataPowerAlias['NttG'] = new PowerAlias('NttG', 'Nailed to the Ground', 'Nailed to the Ground', null);
-dataPowerAlias['BRK'] = new PowerAlias('BRK', 'Break Through', 'Break Through', null);
-dataPowerAlias['CMD'] = new PowerAlias('CMD', 'Commanding Presence', 'Commanding Presence', null);
+const breakThroughHtml = '<ul><li>If target is blocking, disables it.</li>\
+  <li>For 10 sec:\
+  <ul><li>-20% all damage strength</li>\
+    <li>-20% resistance to all damage</li>\
+    <li>-150% Dodge Chance</li>\
+    <li>+20% resistance to Health Points</li></ul></li>\
+  <li>Cannot be applied again for 10 sec.</li></ul>'
+dataPowerAlias['AM'] = new PowerAlias('AM', 'Accelerated Metabolism', 'Accelerated Metabolism', '20% chance to gain energy on attack, can only occur once every 10 sec on any power.');
+dataPowerAlias['CHAL'] = new PowerAlias('CHAL', 'Challenge!', 'Challenge!', 'Applies threat over time debuff and damage debuff, both cannot be refreshed or stacked.');
+dataPowerAlias['NttG'] = new PowerAlias('NttG', 'Nailed to the Ground', 'Nailed to the Ground', 'Disables and prevents the use of Travel Powers for 5 sec.');
+dataPowerAlias['BRK'] = new PowerAlias('BRK', 'Break Through', 'Break Through', breakThroughHtml);
+const cPHtml = '<ul>\
+  <li>+ Applies a large threat over time debuff to your target.</li>\
+  <li>+ This effect can be stacked on top of the Challenge! effect..</li>\
+  <li>+ This effect cannot be refreshed.</li>\
+  </ul>';
+dataPowerAlias['CMD'] = new PowerAlias('CMD', 'Commanding Presence', 'Commanding Presence', cPHtml);
 
 // Generic advantage template
 /*
@@ -887,6 +898,42 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(, dataPowerA
 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(, dataPowerAlias['CMD'].name, dataPowerAlias['CMD'].desc, 1, null, dataPowerAlias['CMD'].tip));
 */
+
+// Ultimate Power advantages
+dataPowerAlias['DV'] = new PowerAlias('DV', 'Double Vortex', 'Double Vortex', '+ This power now has a chance to apply multiple stacks of Bane every hit.');
+
+const hTLHtml = '<ul>\
+  <li>+ For a short duration, maintaining this power counts as using a Block for power interaction purposes.</li>\
+  <li>+ This amount increases based on the rank of your Force Shield power.</li>\
+  </ul>';
+dataPowerAlias['HTL'] = new PowerAlias('HTL', 'Hold The Line', 'Hold The Line', hTLHtml);
+
+const iHtml = '<ul>\
+  <li>+ Applies a large threat over time debuff to your target when using a melee attack.</li>\
+  <li>+ This amount scales with how many stacks of Enraged you have.</li>\
+  <li>+ This effect can be stacked on top of the Challenge! effect.</li>\
+  <li>- This effect cannot be stacked more than once on a target per activation of this power.</li>\
+  <li>- This effect cannot be refreshed.</li>\
+  </ul>';
+dataPowerAlias['I'] = new PowerAlias('I', 'Intimidation', 'Intimidation', iHtml);
+
+const iNANHtml = '<ul>\
+  <li>After much intensity you need to lie down for a bit.</li>\
+  <li>+ Wipes all of your threat from nearby foes.</li>\
+  <li>+ Placate the target, making them unable to attack you.</li>\
+  <li>+ Placate only works on weaker targets. This includes Henchmen, Villains, and Enforcers.</li>\
+  <li>+ Briefly places you in Stealth.</li>\
+  <li>+ Removes any Debuffs on you.</li>\
+  <li>- Puts all other threat wipe abilities on cooldown.</li>\
+  <li>- Puts you to Sleep for a short amount of time.</li>\
+  </ul>';
+dataPowerAlias['INAN'] = new PowerAlias('INAN', 'I Need A Nap', 'I Need A Nap', iNANHtml);
+
+const tHtml = '<ul>\
+  <li>+ This power now applies Debilitating Poison on the initial hit, reducing resistance to Toxic damage.</li>\
+  <li>+ Debilitating Poison is a type of Poison and Curse.</li>\
+  </ul>';
+dataPowerAlias['T'] = new PowerAlias('T', 'Toxicity', 'Toxicity', tHtml);
 
 //==============================================================================
 // Power Set: Energy Projector
@@ -1650,7 +1697,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Redire
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, dataPowerAlias['HTL'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Tornado'].name, dataPowerAlias['Tornado'].desc, 1, 1, pow++, 4, dataPowerAlias['Tornado'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -2335,7 +2382,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Redire
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, dataPowerAlias['HTL'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Tornado'].name, dataPowerAlias['Tornado'].desc, 1, 2, pow++, 4, dataPowerAlias['Tornado'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -2860,7 +2907,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Redire
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, dataPowerAlias['HTL'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Tornado'].name, dataPowerAlias['Tornado'].desc, 1, 3, pow++, 4, dataPowerAlias['Tornado'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -3062,7 +3109,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Redire
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, dataPowerAlias['HTL'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Tornado'].name, dataPowerAlias['Tornado'].desc, 1, 4, pow++, 4, dataPowerAlias['Tornado'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -3316,7 +3363,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Redire
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hold the Line', 'Hold the Line', 1, null, dataPowerAlias['HTL'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Tornado'].name, dataPowerAlias['Tornado'].desc, 1, 5, pow++, 4, dataPowerAlias['Tornado'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -7980,7 +8027,21 @@ dataPowerAlias['Supernatural Power'] = new PowerAlias('Supernatural Power', 'Sup
 
 // Mystic Ultimates
 
-dataPowerAlias['Planar Fracture'] = new PowerAlias('Planar Fracture', 'Planar Fracture', '<img src="img/power-icons/mystic/Mystic_PlanarFracture.png" />&nbsp;Planar Fracture', null);
+const planarFractureHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Mystic<br>98 energy<br>0.67-2.67 sec</div>\
+  <div style="text-align:right;">Targets foe<br>50 feet<br>60 seconds recharge</div>\
+</div><br>\
+RANGED AOE DAMAGE - DOT - DEBUFF<br><br>\
+Planar Fracture creates a tear in time and space, linking this plane with another. Chaotic energy pours forth from the fracture, causing random damage and status effects on your foes.<br><br>\
+CHARGE<br>\
+<ul>\
+  <li>Creates a Planar Rift at the target&apos;s location for 16 sec.</li>\
+  <li>Deals Dimensional Damage every 1 sec to up to 10 foes within 25ft.</li>\
+  <li>Applies Bane to affected targets, which has a 25% chance to apply additional stacks after the initial hit.</li>\
+  <li>Must be fully charged to take effect.</li>\
+  <li>This power is incapable of getting a Critical Hit.</li>\
+</ul>';
+dataPowerAlias['Planar Fracture'] = new PowerAlias('Planar Fracture', 'Planar Fracture', '<img src="img/power-icons/mystic/Mystic_PlanarFracture.png" />&nbsp;Planar Fracture', planarFractureHtml);
 
 dataPowerAlias['Endbringer\'s Grasp'] = new PowerAlias('Endbringer\'s Grasp', 'Endbringer\'s Grasp', '<img src="img/power-icons/mystic/Mystic_EndbringersGrasp.png" />&nbsp;Endbringer\'s Grasp', null);
 
@@ -8154,7 +8215,8 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Planar
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, dataPowerAlias['DV'].tip));
+
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Endbringer\'s Grasp'].name, dataPowerAlias['Endbringer\'s Grasp'].desc, 6, 20, pow++, 4, dataPowerAlias['Endbringer\'s Grasp'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -8170,14 +8232,14 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Feral 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, dataPowerAlias['INAN'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, dataPowerAlias['I'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Corrosive Pit'].name, dataPowerAlias['Corrosive Pit'].desc, 6, 20, pow++, 4, dataPowerAlias['Corrosive Pit'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, dataPowerAlias['T'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Transcendence'].name, dataPowerAlias['Transcendence'].desc, 6, 20, pow++, 4, dataPowerAlias['Transcendence'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -8450,7 +8512,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Planar
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, dataPowerAlias['DV'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Endbringer\'s Grasp'].name, dataPowerAlias['Endbringer\'s Grasp'].desc, 6, 21, pow++, 4, dataPowerAlias['Endbringer\'s Grasp'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -8466,14 +8528,14 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Feral 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, dataPowerAlias['INAN'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, dataPowerAlias['I'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Corrosive Pit'].name, dataPowerAlias['Corrosive Pit'].desc, 6, 21, pow++, 4, dataPowerAlias['Corrosive Pit'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, dataPowerAlias['T'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Transcendence'].name, dataPowerAlias['Transcendence'].desc, 6, 21, pow++, 4, dataPowerAlias['Transcendence'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -8795,7 +8857,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Planar
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, dataPowerAlias['DV'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Endbringer\'s Grasp'].name, dataPowerAlias['Endbringer\'s Grasp'].desc, 6, 22, pow++, 4, dataPowerAlias['Endbringer\'s Grasp'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -8811,14 +8873,14 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Feral 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, dataPowerAlias['INAN'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, dataPowerAlias['I'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Corrosive Pit'].name, dataPowerAlias['Corrosive Pit'].desc, 6, 22, pow++, 4, dataPowerAlias['Corrosive Pit'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, dataPowerAlias['T'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Transcendence'].name, dataPowerAlias['Transcendence'].desc, 6, 22, pow++, 4, dataPowerAlias['Transcendence'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -9130,7 +9192,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Planar
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, dataPowerAlias['DV'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Endbringer\'s Grasp'].name, dataPowerAlias['Endbringer\'s Grasp'].desc, 6, 23, pow++, 4, dataPowerAlias['Endbringer\'s Grasp'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -9146,14 +9208,14 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Feral 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, dataPowerAlias['INAN'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, dataPowerAlias['I'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Corrosive Pit'].name, dataPowerAlias['Corrosive Pit'].desc, 6, 23, pow++, 4, dataPowerAlias['Corrosive Pit'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, dataPowerAlias['T'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Transcendence'].name, dataPowerAlias['Transcendence'].desc, 6, 23, pow++, 4, dataPowerAlias['Transcendence'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -9185,31 +9247,79 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['PowerN
 // Infernal Supernatural: Energy Builder
 //------------------------------------------------------------------------------
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Infernal Bolts', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_InfernalBolts.png" />&nbsp;Infernal Bolts', 6, 24, pow++, -1, null);
+const infernalBoltsHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5 sec activate time</div>\
+  <div style="text-align:right;">Targets foe<br>50 feet</div>\
+</div><br>\
+RANGED DAMAGE - ENERGY BUILDER - POISON<br><br>\
+CLICK<br><br>\
+<ul>\
+  <li>Deals Toxic Damage and generates Energy.</li>\
+  <li>The initial attack has a chance to apply Deadly Poison to your target.</li>\
+  <li>Deadly Poison deals Toxic Damage every 1 sec for 16 sec and stacks up to 5 times.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Infernal Bolts', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_InfernalBolts.png" />&nbsp;Infernal Bolts', 6, 24, pow++, -1, infernalBoltsHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxin Overload', 'Toxin Overload', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxin Overload', 'Toxin Overload', 2, null, '+ Has a chance to apply Deadly Poison on each shot instead of just the first.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
 //------------------------------------------------------------------------------
 // Infernal Supernatural: Tier 0
 //------------------------------------------------------------------------------
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Lash', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Lash.png" />&nbsp;Lash', 6, 24, pow++, 0, null);
+const lashHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5-1 sec activate time</div>\
+  <div style="text-align:right;">Targets foe<br>50 feet</div>\
+</div><br>\
+RANGED DAMAGE - POISON - COMBO<br><br>\
+Lash throws a length of infernal chain at your enemy.<br><br>\
+CLICK<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time. This damage partially penetrates through most Shield effects.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>\
+COMBO FINISH<br>\
+<ul>\
+  <li>Deals Toxic damage in a 30 degree cone (5 targets max).</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Lash', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Lash.png" />&nbsp;Lash', 6, 24, pow++, 0, lashHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Decay', 'Decay', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Decay', 'Decay', 2, null, '+ Finishing combo applies Debilitating Poison to primary target, reducing resistance to Toxic damage, counts as type of Poison and Curse.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Infernal Blast', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_InfernalBlast.png" />&nbsp;Infernal Blast', 6, 24, pow++, 0, null);
+const infernalBlastHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5-2 sec activate time</div>\
+  <div style="text-align:right;">Targets foe<br>100 feet</div>\
+</div><br>\
+RANGED DAMAGE - POISON - BLAST<br><br>\
+Infernal Blast is a highly focused bolt of Toxic power. Your foes will lose this war of attrition.<br><br>\
+TAP<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>Refreshes duration of all Poisons on the target.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>\
+CHARGE<br>\
+<ul>\
+  <li>Increases the damage and Energy cost of the Tap effect.</li>\
+</ul>';
+const virulentPropagationHtml = '<ul>\
+  <li>+ Fully charging this power will spread any of your Poison effects to nearby targets, as well as dealing additional Toxic damage.</li>\
+  <li>+ Refreshes the duration of all of your Poisons effects on targets that these effects were spread to.</li>\
+  </ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Infernal Blast', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_InfernalBlast.png" />&nbsp;Infernal Blast', 6, 24, pow++, 0, infernalBlastHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Virulent Propagation', 'Virulent Propagation', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Virulent Propagation', 'Virulent Propagation', 2, null, virulentPropagationHtml));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
@@ -9219,102 +9329,344 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, 'PVD: Ten
 // Infernal Supernatural: Tier 1
 //------------------------------------------------------------------------------
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Devour Essence', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_DevourEssence.png" />&nbsp;Devour Essence', 6, 24, pow++, 1, null);
+const devourEssenceHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5 sec, lasts up to 4 sec</div>\
+  <div style="text-align:right;">Targets foe<br>10 feet</div>\
+</div><br>\
+MELEE DAMAGE - LIFE DRAIN - SNARE<br><br>\
+Devour Essence is a parasitic attack that drains health from your enemy and transfers it to you.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>Snares the target, reducing their movement speed for a short time.</li>\
+  <li>The damage dealt by this power heals you.</li>\
+  <li>This heal is considered a Life Drain effect.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Devour Essence', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_DevourEssence.png" />&nbsp;Devour Essence', 6, 24, pow++, 1, devourEssenceHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Phlebotomist', 'Phlebotomist', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Devour Soul', 'Devour Soul', 3, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Viral', 'Viral', 2, null, null));
+const phlebotomistHtml = '<ul>\
+  <li>+ Causes Devour Essence to Root its Target for the duration of the attack.</li>\
+  <li>+ Devour Essence will gain bonus healing from Bleeding or Poisoned targets.</li>\
+  </ul>'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Phlebotomist', 'Phlebotomist', 2, null, phlebotomistHtml));
+const devourSoulHtml = '<ul>\
+  <li>+ If you are above half health, increases the amount of damage this power deals for every full maintain.</li>\
+  <li>- No longer heals if you are above half health.</li>\
+  <li>- If you fall below half health, damage bonus is removed and healing effect is returned.</li>\
+  </ul>'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Devour Soul', 'Devour Soul', 3, null, devourSoulHtml));
+const viralHtml = '+ Causes your poisons to increase in toxicity, increasing the chance of inflicting additional Deadly Poison on the target over time.'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Viral', 'Viral', 2, null, viralHtml));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Venomous Breath'].name, dataPowerAlias['Venomous Breath'].desc, 6, 24, pow++, 1, dataPowerAlias['Venomous Breath'].tip);
+const venomousBreathHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>0.5 sec, lasts up to 5 sec</div>\
+  <div style="text-align:right;">Targets foe (5 max)<br>50 feet; 45 degree Cone</div>\
+</div><br>\
+RANGED AOE DAMAGE - POISON<br><br>\
+Venomous Breath causes you to exhale a deadly mist of poison to choke and torment your enemies.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Creates a cone area of effect, dealing toxic damage to targets in the cone.</li>\
+  <li>Targets hit with Venomous Breath have a chance to be afflicted by Deadly Poison.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Venomous Breath'].name, dataPowerAlias['Venomous Breath'].desc, 6, 24, pow++, 1, venomousBreathHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Paralytic Bile', 'Paralytic Bile', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Infectious Bile', 'Infectious Bile', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Locust Breath', 'Locust Breath', 0, null, null));
+const paralyticBileHtml = '<ul>\
+  <li>+ Targets hit with Venomous Breath have a chance to suffer from an Infection that Stuns them for a short time.</li>\
+  <li>+ Targets that are Bleeding have a guaranteed chance to be Infected.</li>\
+  </ul>'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Paralytic Bile', 'Paralytic Bile', 2, null, paralyticBileHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Infectious Bile', 'Infectious Bile', 2, null, '+ Attacking Bleeding targets increases your chance to apply Deadly Poison.'));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Locust Breath', 'Locust Breath', 0, null, 'FX Change: Venomous Breath becomes Locust Breath.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Vile Lariat', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_VileLariat.png" />&nbsp;Vile Lariat', 6, 24, pow++, 1, null);
+const vileLariatHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.83-2 sec activate time</div>\
+  <div style="text-align:right;">Targets foe<br>50 feet; 10 seconds recharge</div>\
+</div><br>\
+RANGED DAMAGE - KNOCK TO - POISON<br><br>\
+Vile Lariat lashes out at your enemy using an infernal chain as a whip.<br><br>\
+TAP<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>Knocks the target towards you.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time. This damage partially penetrates through most Shield effects.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>\
+CHARGE<br>\
+<ul>\
+  <li>Increases the damage from the tap effect.</li>\
+  <li>Increases the chance to Deadly Poison your target.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Vile Lariat', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_VileLariat.png" />&nbsp;Vile Lariat', 6, 24, pow++, 1, vileLariatHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Fester', 'Fester', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Work Up', 'Work Up', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Viral', 'Viral', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Corrupt', 'Corrupt', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Fester', 'Fester', 2, null, '+ Fully Charging Vile Lariat applies a damage debuff that scales of your Poison stacks.'));
+const workUpHtml = '<ul>\
+  <li>+ Applies Restoration, which gives you a heal over time.</li>\
+  <li>+ Heals for an additional amount if your health is low.</li>\
+  <li>- Has a short internal cooldown after use</li>\
+  </ul>'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Work Up', 'Work Up', 2, null, workUpHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Viral', 'Viral', 2, null, viralHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Corrupt', 'Corrupt', 2, null, '+ Fully charging Vile Lariat refreshes the duration of Poison on the target.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['NttG'].name, dataPowerAlias['NttG'].desc, 2, null, dataPowerAlias['NttG'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Vicious Cyclone', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_ViciousCyclone.png" />&nbsp;Vicious Cyclone', 6, 24, pow++, 1, null);
+const viciousCycloneHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5 sec, lasts up to 2.5 sec</div>\
+  <div style="text-align:right;">Affects foe (5 max)<br>25 foot Sphere</div>\
+</div><br>\
+RANGED AOE DAMAGE - KNOCK BACK - POISON<br><br>\
+Vicious Cyclone swings an infernal chain around you, lashing out at any enemies that come within its path.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Deals Toxic damage to nearby targets.</li>\
+  <li>Chance per hit to Knock Back targets. This Knock receives half of the Melee Knock Strength benefit from your Strength stat, and half of the Ranged Knock Strength from your Ego stat.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time. This damage partially penetrates through most Shield effects.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Vicious Cyclone', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_ViciousCyclone.png" />&nbsp;Vicious Cyclone', 6, 24, pow++, 1, viciousCycloneHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Vortex Technique', 'Vortex Technique', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stand Your Ground', 'Stand Your Ground', 2, null, null));
+const vortexTechniqueHtml = '<ul>\
+  <li>+ This power becomes a Knock To instead of knocking targets back.</li>\
+  <li>+ Fully maintaining this power applies a stack of Furious to you if you are unaffected by the buff.</li>\
+  <li>+ Refreshes all stacks of Furious if you have existing stacks.</li>\
+  </ul>'
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Vortex Technique', 'Vortex Technique', 2, null, vortexTechniqueHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stand Your Ground', 'Stand Your Ground', 2, null, '+ Greatly increases your Knock resistance while maintaining this power.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Condemn', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Condemn.png" />&nbsp;Condemn', 6, 24, pow++, 1, null);
+const condemnHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.83-2.5 sec activate time</div>\
+  <div style="text-align:right;">Targets foe (5 max)<br>50 feet; 8-15 foot Sphere</div>\
+</div><br>\
+RANGED AOE DAMAGE - POISON<br><br>\
+Condemn causes a concentrated burst of Toxic energy to slam into your enemies.<br><br>\
+TAP<br>\
+<ul>\
+  <li>Deals Toxic damage to your primary target and other nearby targets.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time. This damage partially penetrates through most Shield effects.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>\
+CHARGE<br>\
+<ul>\
+  <li>Increases damage, size of area affected, and energy cost of the TAP effect.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Condemn', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Condemn.png" />&nbsp;Condemn', 6, 24, pow++, 1, condemnHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Redemption Denied', 'Redemption Denied', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Corrupting Force', 'Corrupting Force', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Dark Rune', 'Dark Rune', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Redemption Denied', 'Redemption Denied', 2, null, '+ On a full charge, this power now Paralyzes your primary target and Stuns secondary targets.'));
+const corruptingForceHtml = '<ul>\
+  <li>On a full charge, Condemn now applies Debilitating Poison to your primary target, reducing their resistance to Toxic damage.</li>\
+  <li>+ Debilitating Poison is a type of Poison and Curse.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Corrupting Force', 'Corrupting Force', 2, null, corruptingForceHtml));
+const darkRuneHtml = '<ul>\
+  <li>+ On Full charge leaves behind a Healing Rune on your primary target for a short duration, which heals nearby allies.</li>\
+  <li>+ You cannot have more than one Rune out at a time.</li>\
+  <li>+ Summoning this Rune counts as applying an Enchantment.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Dark Rune', 'Dark Rune', 2, null, darkRuneHtml));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['NttG'].name, dataPowerAlias['NttG'].desc, 2, null, dataPowerAlias['NttG'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Life Essence', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_LifeEssence.png" />&nbsp;Life Essence', 6, 24, pow++, 1, null);
+const lifeEssenceHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5 sec, lasts up to 4 sec</div>\
+  <div style="text-align:right;">Targets foe<br>50 feet</div>\
+</div><br>\
+LIFE DRAIN<br><br>\
+Life Essence utilizes infernal magic to transfer life energy from your enemy to you.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Heals you and nearby allies.</li>\
+  <li>Heals allies within 20ft.</li>\
+  <li>If your target is affected by a type of Poison, instead heals nearby allies for an increased amount.</li>\
+  <li>This heal is considered a Life Drain effect.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Life Essence', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_LifeEssence.png" />&nbsp;Life Essence', 6, 24, pow++, 1, lifeEssenceHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Infernal Bond', 'Infernal Bond', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Infernal Bond', 'Infernal Bond', 2, null, '+ Life Essence will now deal Toxic damage.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Regeneration'].name, dataPowerAlias['Regeneration'].desc, 6, 24, pow++, 1, dataPowerAlias['Regeneration'].tip);
+const regenerationHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Self<br>Passive</div>\
+</div><br>\
+SLOTTED PASSIVE - SELF HEAL OVER TIME<br><br>\
+Regeneration greatly increases the speed at which you recover from wounds.<br><br>\
+SLOTTED PASSIVE<br>\
+<ul>\
+  <li>Can be slotted in a Defensive or Balanced passive slot.</li>\
+  <li>Causes you to constantly gain health over time.</li>\
+  <li>Health gained scales with your Super Stats.</li>\
+  <li>Damage received increases healing per period up to 250% of normal.</li>\
+  <li>Healing slowly decreases over time.</li>\
+  <li>Sustained blocking rapidly reduces the amount of health regenerated per tick, but not below the base value.</li>\
+  <li>Additionally you gain +20% resistance to all damage. This value is reduced as you take damage.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Regeneration'].name, dataPowerAlias['Regeneration'].desc, 6, 24, pow++, 1, regenerationHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Pestilence'].name, dataPowerAlias['Pestilence'].desc, 6, 24, pow++, 1, dataPowerAlias['Pestilence'].tip);
+const pestilenceHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Affects foe (5 max)<br>10 foot Sphere</div>\
+</div><br>\
+SLOTTED PASSIVE - DAMAGE OVER TIME<br><br>\
+You surround yourself in a cloud of unnatural filth, inflicting toxic damage and infesting your foes.<br><br>\
+SLOTTED PASSIVE<br>\
+<ul>\
+  <li>Can be slotted in an Offensive or Balanced passive power slot.</li>\
+  <li>Only active while in combat.</li>\
+  <li>Increases all of your Toxic and Slashing damage. This increase scales with your Super Stats.</li>\
+  <li>Increases your resistance to all Elemental (Fire, Ice, Toxic) damage and greatly increases your resistance to Toxic Damage. These resistances scale with your Super Stats.</li>\
+  <li>Deals Toxic damage over time to enemies within 10 feet. This damage increases as the target&apos;s health gets lower.</li>\
+  <li>Deals Toxic damage over time to targets you attack with ranged powers. This damage increases as the target&apos;s health gets lower.</li>\
+  <li>Reduces your foes resistance to your Toxic damage for each stack of Deadly Poison on them.</li>\
+  <li>Reduces your foes resistance to your Slashing damage for each stack of Bleed on them.</li>\
+  <li>Enemies affected by Pestilence receive reduced benefit from healing effects.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Pestilence'].name, dataPowerAlias['Pestilence'].desc, 6, 24, pow++, 1, pestilenceHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Aspect of the Infernal', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_AspectOfTheInfernal.png" />&nbsp;Aspect of the Infernal', 6, 24, pow++, 1, null);
+const aspectOfTheInfernalHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>1 sec activate time</div>\
+  <div style="text-align:right;">Targets self<br>Toggle</div>\
+</div><br>\
+BUFF - FORM<br><br>\
+You focus on your connection with your Infernal powers, increasing their effect.<br><br>\
+TOGGLE<br>\
+<ul>\
+  <li>Activating this power grants a stack of the Concentration buff, increasing your ranged damage and melee damage to a lesser degree.</li>\
+  <li>This form scales with your Ego or Intelligence (whichever is higher).</li>\
+  <li>Grants you energy when you gain a stack of Concentration.</li>\
+  <li>While you maintain this Form, you have a chance to gain another instance of Concentration whenever you apply or refresh a Poison on a foe.</li>\
+  <li>You can gain a stack of Concentration once every 4 seconds.</li>\
+  <li>You can gain up to 8 stacks of this buff.</li>\
+</ul>\
+SIDE EFFECTS<br>\
+<ul>\
+  <li>While this power is active, the energy cost of all of your other powers is increased by 10%.</li>\
+  <li>You may only have one Form power active at a time.</li>\
+  <li>Activating a Form power immediately ends any pre-existing Forms.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Aspect of the Infernal', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_AspectOfTheInfernal.png" />&nbsp;Aspect of the Infernal', 6, 24, pow++, 1, aspectOfTheInfernalHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Compassion'].name, dataPowerAlias['Compassion'].desc, 6, 24, pow++, 1, dataPowerAlias['Compassion'].tip);
+const compassionHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Mystic<br>1 sec activate time</div>\
+  <div style="text-align:right;">Targets self<br>Toggle</div>\
+</div><br>\
+BUFF - FORM<br><br>\
+With a few moments of concentration and preparation, you may adopt an advanced martial posture.<br><br>\
+TOGGLE<br>\
+<ul>\
+  <li>Activating this power grants a stack of the Compassion buff, increasing your Healing and your damage to a lesser degree.</li>\
+  <li>This Form scales with your Presence or Recovery.</li>\
+  <li>Grants you energy when you gain a stack of Compassion.</li>\
+  <li>You can gain up to 8 stacks of this buff.</li>\
+</ul>\
+TRIGGER CONDITIONS<br>\
+<ul>\
+  <li>While you maintain this Form, you can gain another instance of Compassion whenever you directly heal yourself or an ally.</li>\
+  <li>This effect will not trigger if no health was restored.</li>\
+  <li>This effect will not trigger from passive effects, such as Regeneration or Medical Nanites.</li>\
+  <li>You can gain a stack of Compassion once every 4 seconds.</li>\
+</ul>\
+SIDE EFFECTS<br>\
+<ul>\
+  <li>While this power is active, the energy cost of all of your other powers is increased by 10%.</li>\
+  <li>You may only have one Form power active at a time.</li>\
+  <li>Activating a Form power immediately ends any pre-existing Forms.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Compassion'].name, dataPowerAlias['Compassion'].desc, 6, 24, pow++, 1, compassionHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataRequireGroupPower[dataPower.length-1] = 'mystic';
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Voodoo Doll', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_VoodooDoll.png" />&nbsp;Voodoo Doll', 6, 24, pow++, 1, null);
+const voodooDollHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Targets self<br>Block</div>\
+</div><br>\
+BLOCK<br><br>\
+You create a Voodoo Doll to protect yourself from attackers.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Grants 250% bonus resistance to all damage while blocking.</li>\
+  <li>In addition, your movement speed is reduced by 100% and your resistance to Hold and Knock effects is increased by 100%.</li>\
+  <li>Gives you energy when struck by an attack while blocking. This amount scales with your Recovery and the amount of damage you take.</li>\
+  <li>Deals Toxic Damage back to attackers if you are struck by an attack while blocking.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Voodoo Doll', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_VoodooDoll.png" />&nbsp;Voodoo Doll', 6, 24, pow++, 1, voodooDollHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Voodoo Curse', 'Voodoo Curse', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Voodoo Curse', 'Voodoo Curse', 2, null, '+ Every incoming attack that you block has a small chance of Stunning nearby enemies.'));
 
 // Energy Unlock
-dataPower[dataPower.length] = new Power(dataPower.length, 'Mephitic', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Mephitic.png" />&nbsp;Mephitic', 6, 24, pow++, 1, null);
+const mephiticHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Innate Passive</div>\
+</div><br>\
+INNATE PASSIVE - SECONDARY ENERGY UNLOCK<br><br>\
+You may only have 1 Energy Unlock power. You revel in the toxins you create.<br><br>\
+<ul>\
+  <li>This power does not need to be slotted in order to function, and has no ranks.</li>\
+  <li>Generates Energy over time whenever you apply or refresh a Poison effect.</li>\
+  <li>This effect cannot stack, but triggering the effect will refresh the duration.</li>\
+  <li>The amount of Energy gained scales with your ENDURANCE statistic.</li>\
+  <li>The RECOVERY statistic also scales the amount of Energy you gain to a lesser degree.</li>\
+  <li>Applying or Refreshing a Poison effect grants Energy every 3 sec for 6 sec.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Mephitic', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Mephitic.png" />&nbsp;Mephitic', 6, 24, pow++, 1, mephiticHtml);
 dataEnergyUnlockPower[dataPower.length-1] = true;
 
 // Energy Unlock
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Supernatural Power'].name, dataPowerAlias['Supernatural Power'].desc, 6, 24, pow++, 1, dataPowerAlias['Supernatural Power'].tip);
+const supernaturalPowerHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Innate Passive</div>\
+</div><br>\
+INNATE PASSIVE - SECONDARY ENERGY UNLOCK<br><br>\
+You may only have 1 Energy Unlock power. You are able to tap into a nearly limitless pool of energy.<br><br>\
+INNATE PASSIVE<br>\
+<ul>\
+  <li>This power does not need to be slotted in order to function, and has no ranks.</li>\
+  <li>Any time you use a Supernatural power that depletes your energy, you will gain a burst of energy.</li>\
+  <li>The amount of Energy returned scales with your RECOVERY.</li>\
+</ul>\
+PASSIVE<br>\
+<ul>\
+  <li>Any time you use a Supernatural power that reduces your energy pool to less than 15%, you gain Energy.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Supernatural Power'].name, dataPowerAlias['Supernatural Power'].desc, 6, 24, pow++, 1, supernaturalPowerHtml);
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 dataEnergyUnlockPower[dataPower.length-1] = true;
 
@@ -9322,77 +9674,249 @@ dataEnergyUnlockPower[dataPower.length-1] = true;
 // Infernal Supernatural: Tier 2
 //------------------------------------------------------------------------------
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Epidemic', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Epidemic.png" />&nbsp;Epidemic', 6, 24, pow++, 2, null);
+const epidemicHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>0.5 sec, lasts up to 3-4 sec</div>\
+  <div style="text-align:right;">Affects foe (5 max)<br>25 foot Sphere</div>\
+</div><br>\
+RANGED AOE DAMAGE - POISON<br><br>\
+Unleash a great plague upon your enemies.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Deals 135-254 Toxic Damage (based on pulse) every 0.5 sec to nearby targets.</li>\
+  <li>Has a chance to apply <b>Deadly Poison</b>, which stacks up to 5 times.</li>\
+  <li><b>Deadly Poison</b> deals 33 Toxic Damage every 1 sec for 16 sec.</li>\
+  <li><b>Deadly Poison</b> damage partially penetrates through most Shield effects.</li>\
+  <li>Fully maintaining this power will double the amount of stacks of <b>Deadly Poison</b> on affected targets.</li>\
+  <li><b>Deadly Poison</b> is a type of <b>Poison</b>.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Epidemic', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Epidemic.png" />&nbsp;Epidemic', 6, 24, pow++, 2, epidemicHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Outbreak', 'Outbreak', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Plague', 'Plague', 2, null, null));
+const outbreakHtml = '<ul>\
+  <li>+ Reduces the maximum maintain time of this power.</li>\
+  <li>+ Increases the chance to apply Deadly Poison.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Outbreak', 'Outbreak', 2, null, outbreakHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Plague', 'Plague', 2, null, '+ Increases the effectiveness of the Toxic resistance debuff from your Pestilence passive while maintaining this power.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Crippling Coils', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_CripplingCoils.png" />&nbsp;Crippling Coils', 6, 24, pow++, 2, null);
+const cripplingCoilsHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>1 sec, lasts up to 5 sec</div>\
+  <div style="text-align:right;">Targets foe that is not destructible<br>50 feet</div>\
+</div><br>\
+RANGED DAMAGE - INCAPACITATE - POISON<br><br>\
+Crippling Coils sends chains through the ground to latch on to your foe, preventing them from attacking or even moving.<br><br>\
+MAINTAIN<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>After maintaining for 1 second, Incapacitates the target. Incapacitated targets can&apos;t move or attack.</li>\
+  <li>The duration and durability of the Incapacitate are partially refreshed each second the power is maintained.</li>\
+  <li>If your target breaks free of the Hold while you are maintaining this power, this power will be interrupted.</li>\
+  <li>Has a chance to apply Deadly Poison, which stacks up to 5 times.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Crippling Coils', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_CripplingCoils.png" />&nbsp;Crippling Coils', 6, 24, pow++, 2, cripplingCoilsHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Barbed Chains', 'Barbed Chains', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Light Everlasting', 'Light Everlasting', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Barbed Chains', 'Barbed Chains', 2, null, '+ Any time an opponent breaks free from a Hold while affected by Crippling Coils they take a moderate amount of Slashing damage and begin Bleeding.'));
+const lightEverlastingHtml = '<ul>\
+  <li>+ If Crippling Coils is maintained for at least 1 second, applies Light Everlasting to allies around you.</li>\
+  <li>+ Light Everlasting is Heal Over Time.</li>\
+  <li>+ This effect counts as an Enchantment.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Light Everlasting', 'Light Everlasting', 2, null, lightEverlastingHtml));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['NttG'].name, dataPowerAlias['NttG'].desc, 2, null, dataPowerAlias['NttG'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Locust Swarm', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_LocustSwarm.png" />&nbsp;Locust Swarm', 6, 24, pow++, 2, null);
+const locustSwarmHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>21 energy<br>0.67-2.5 sec</div>\
+  <div style="text-align:right;">Targets foe that is not destructible<br>50 feet<br>7.8 seconds recharge</div>\
+</div><br>\
+RANGED HOLD - RANGED DAMAGE<br><br>\
+You call a swarm of locusts on your foe, preventing them from taking any actions.<br><br>\
+CHARGE<br>\
+<ul>\
+  <li>Must be fully charged.</li>\
+  <li>Deals Toxic damage.</li>\
+  <li>Paralyzes the target. Paralyzed targets can&apos;t move or attack.</li>\
+  <li>The target is able to struggle to break free from the hold early.</li>\
+  <li>While the target remains Paralyzed, they suffer Toxic Damage every 1 sec.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Locust Swarm', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_LocustSwarm.png" />&nbsp;Locust Swarm', 6, 24, pow++, 2, locustSwarmHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Festering Bites', 'Festering Bites', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Festering Bites', 'Festering Bites', 2, null, '+ Each time your Locust Swarm deals damage, it has a 15% chance to apply Deadly Poison, which stacks up to 5 times and causes your target to suffer Toxic damage over time.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Entrancing', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Entrancing.png" />&nbsp;Entrancing', 6, 24, pow++, 2, null);
+const entrancingHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>1 sec activate time</div>\
+  <div style="text-align:right;">Targets foe (not destructible)<br>100 feet<br>45 seconds recharge</div>\
+</div><br>\
+THREAT WIPE - STEALTH<br><br>\
+You are able to convince your foe that you are not a threat.<br><br>\
+CLICK<br>\
+<ul>\
+  <li>Wipes your threat from your target.</li>\
+  <li>Places you in Stealth for 4 sec.</li>\
+  <li>Sets your other threat wipe abilities on a 30 cooldown.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Entrancing', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Entrancing.png" />&nbsp;Entrancing', 6, 24, pow++, 2, entrancingHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Curse', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Curse.png" />&nbsp;Curse', 6, 24, pow++, 2, null);
+const curseHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>93 Energy cost<br>1 sec activate time</div>\
+  <div style="text-align:right;">Targets foe (not destructible, 5 max)<br>50 feet; 15 foot Sphere<br>12 seconds recharge</div>\
+</div><br>\
+RANGED DAMAGE - CONTROL<br><br>\
+You create a Voodoo doll in the likeness of your foes.<br><br>\
+TAP<br>\
+<ul>\
+  <li>Deals Toxic Damage to affected targets.</li>\
+  <li>Stuns targets.</li>\
+  <li>If a target is affected by 5 or more Poison effects, Paralyzes them instead for 12 sec.</li>\
+  <li>The area effect of this power is increased by 10ft if you are affected by the Pestilence power.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Curse', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Curse.png" />&nbsp;Curse', 6, 24, pow++, 2, curseHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Jinx', 'Jinx', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Needles', 'Needles', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Covet', 'Covet', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Corrosion', 'Corrosion', 2, null, null));
+const jinxHtml = '<ul>\
+  <li>+ Applies Jinxed to your target, causing them to move slower and deal less damage.</li>\
+  <li>+ After a short amount of time, targets affected by Jinxed are Knocked down.</li>\
+  <li>+ Jinxed is a type of Curse.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Jinx', 'Jinx', 2, null, jinxHtml));
+const needlesHtml = '<ul>\
+  <li>+ Applies Bleeding to targets.</li>\
+  <li>+ If a target is already Bleeding this effect will not apply an additional stack.</li>\
+  <li>+ Bleeding is a type of Wound.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Needles', 'Needles', 2, null, needlesHtml));
+const covetHtml = '<ul>\
+  <li>+ Applies Restoration, which gives you a heal over time.</li>\
+  <li>+ Heals for an additional amount if your health is low.</li>\
+  <li>- Has a short internal cooldown after use.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Covet', 'Covet', 2, null, covetHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Corrosion', 'Corrosion', 2, null, '+ Refreshes all of your Poison stacks on affected targets.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Soul Mesmerism'].name, dataPowerAlias['Soul Mesmerism'].desc, 6, 24, pow++, 2, dataPowerAlias['Soul Mesmerism'].tip);
+const soulMesmerismHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>28 energy cost<br>0.67-2.5 sec</div>\
+  <div style="text-align:right;">Targets foe (not destructible)<br>50 feet<br>10 seconds recharge</div>\
+</div><br>\
+RANGED HOLD<br><br>\
+Soul Mesmerism attempts to hypnotize your enemy, preventing them from taking any actions.<br><br>\
+CHARGE<br>\
+<ul>\
+  <li>Must be fully charged.</li>\
+  <li>Paralyzes the target for 12 sec. Paralyzed targets can&apos;t move or attack.</li>\
+  <li>The target is able to struggle to break free from the hold early.</li>\
+  <li>Damage the target takes will reduce the duration some as well.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Soul Mesmerism'].name, dataPowerAlias['Soul Mesmerism'].desc, 6, 24, pow++, 2, soulMesmerismHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Glossolalia', 'Glossolalia', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Glossolalia', 'Glossolalia', 2, null, '# Your target begins speaking in tongues. Nearby foes take sonic damage over time and have a chance to join in the chant.'));
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Death\'s Embrace', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_DeathsEmbrace.png" />&nbsp;Death\'s Embrace', 6, 24, pow++, 2, null);
+const deathsEmbraceHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>30 energy cost<br>0.83 sec activate time</div>\
+  <div style="text-align:right;">Affects defeated friendly player<br>25-50 foot Sphere<br>2 sec charge</div>\
+</div><br>\
+REVIVE<br><br>\
+Your powers allow you to call other heroes back from the brink of defeat.<br><br>\
+CHARGE<br>\
+<ul>\
+  <li>Revives a nearby Hero, bringing them back from defeat with 33% of their Health.</li>\
+  <li>This power must be fully charged to take effect.</li>\
+  <li>Taking damage will interrupt using this power.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Death\'s Embrace', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_DeathsEmbrace.png" />&nbsp;Death\'s Embrace', 6, 24, pow++, 2, deathsEmbraceHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Pact', 'Pact', 2, null, null));
+const pactHtml = '<ul>\
+  <li>+ This power can now resurrect multiple targets.</li>\
+  <li>+ Healing received is divded amongst targets resurrected.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Pact', 'Pact', 2, null, pactHtml));
 
-dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Resurgence'].name, dataPowerAlias['Resurgence'].desc, 6, 24, pow++, 2, dataPowerAlias['Resurgence'].tip);
+const resurgenceHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Supernatural<br>Instant</div>\
+  <div style="text-align:right;">Targets self<br>1 minute 30 seconds recharge</div>\
+</div><br>\
+ACTIVE DEFENSE - SELF HEAL - INCREASED HEALTH<br><br>\
+Resurgence focuses your body&apos;s healing power into a quick burst of health.<br><br>\
+CLICK<br>\
+<ul>\
+  <li>Self heal.</li>\
+  <li>Increases your Maximum Hit Points by +833.</li>\
+  <li>Increases your Health Regeneration by 5%.</li>\
+  <li>Increases healing per pulse from Regeneration as if you had just taken a significant amount of damage.</li>\
+  <li>This power has a duration of 15 sec.</li>\
+  <li>You gain +50% Health Points.</li>\
+  <li>Can be used while Held.</li>\
+  <li>Unlike most heal powers, this power is unaffected by Bonus Healing.</li>\
+  <li>This power is considered to be an Active Defense. Activating this power imposes a shared cooldown of 90 seconds on all other Active Defenses.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Resurgence'].name, dataPowerAlias['Resurgence'].desc, 6, 24, pow++, 2, resurgenceHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Unchained', 'Unchained', 2, null, null));
+const unchainedHtml = '<ul>\
+  <li>+ Applies Break Free damage to any Holds, Roots, or Disables affecting you.</li>\
+  <li>+ Applies 1 stack of Knock and Hold resistance.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Unchained', 'Unchained', 2, null, unchainedHtml));
 dataRequireGroupPower[dataPower.length-1] = 'supernatural';
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Will-O\'-The-Wisp', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_WillOTheWisp.png" />&nbsp;Will-O\'-The-Wisp', 6, 24, pow++, 2, null);
+const willOTheWispHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>57 energy<br>0.5 sec</div>\
+  <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 10 foot Sphere</div>\
+</div><br>\
+POISON<br><br>\
+Summon ghostly flames to haunt your foes.<br><br>\
+CLICK<br>\
+<ul>\
+  <li>Applies Debilitating Poison to your primary target, reducing their resistance to Toxic damage.</li>\
+  <li>Applies Deadly Poison to your secondary targets, causing them to suffer from Toxic damage over time.</li>\
+  <li>Debilitating Poison is a type of Curse and Poison.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Will-O\'-The-Wisp', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_WillOTheWisp.png" />&nbsp;Will-O\'-The-Wisp', 6, 24, pow++, 2, willOTheWispHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Guide', 'Guide', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Cursed', 'Cursed', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Ghost Fire', 'Ghost Fire', 2, null, null));
+const guideHtml = '<ul>\
+  <li>+ Applies Illumination to nearby allies, increasing the amount of direct healing they receive.</li>\
+  <li>+ Applies Illuminated to the target, causing allies who attack them to heal.</li>\
+  <li>+ Illumination is a type of Enchantment.</li>\
+  <li>+ Illuminated is a type of Curse.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Guide', 'Guide', 2, null, guideHtml));
+const cursedHtml = '<ul>\
+  <li>+ Applies Hexed to your primary target, reducing their resistance to Magic damage.</li>\
+  <li>+ Hexed is a type of Curse.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Cursed', 'Cursed', 2, null, cursedHtml));
+const ghostFireHtml = '<ul>\
+  <li>+ Applies Clinging Flames to your primary target.</li>\
+  <li>+ Clinging Flames is a type of Burning effects.</li>\
+  <li>+ Applies Fear to your primary target.</li>\
+  <li>+ Fear is a type of Mental State.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Ghost Fire', 'Ghost Fire', 2, null, ghostFireHtml));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
@@ -9400,20 +9924,56 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPower
 // Infernal Supernatural: Tier 3
 //------------------------------------------------------------------------------
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Defile', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Defile.png" />&nbsp;Defile', 6, 24, pow++, 3, null);
+const defileHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>40-103 energy<br>0.67-2.5 sec</div>\
+  <div style="text-align:right;">Targets foe<br>100 feet</div>\
+</div><br>\
+RANGED DAMAGE - POISON<br><br>\
+Defile greatly damages your target and leaves them withered.<br><br>\
+TAP<br>\
+<ul>\
+  <li>Single target Toxic damage.</li>\
+  <li>Chance to inflict Deadly Poison to your target, which deals toxic damage over time.</li>\
+  <li>Deadly Poison is a type of Poison.</li>\
+</ul>\
+CHARGE<br>\
+<ul>\
+  <li>Increases the damage and Energy cost of the Tap action.</li>\
+  <li>Increases the chance for Deadly Poison to apply.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Defile', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Defile.png" />&nbsp;Defile', 6, 24, pow++, 3, defileHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Plague Bearer', 'Plague Bearer', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Lethal Poison', 'Lethal Poison', 2, null, null));
+const plagueBearerHtml = '<ul>\
+  <li>+ Fully charging Defile places Noxious Poison on your target, dealing toxic damage over time to foes around your target.</li>\
+  <li>+ Noxious Poison is a type of Poison and Curse.</li>\
+  </ul>';
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Plague Bearer', 'Plague Bearer', 2, null, plagueBearerHtml));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Lethal Poison', 'Lethal Poison', 2, null, '+ Increases the damage of this power against targets afflicted by multiple Poison effects.'));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
-dataPower[dataPower.length] = new Power(dataPower.length, 'Rebirth', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Rebirth.png" />&nbsp;Rebirth', 6, 24, pow++, 3, null);
+const rebirthHtml = '<div style="display:flex; justify-content:space-between;">\
+  <div>Infernal Supernatural<br>2 sec activate time</div>\
+  <div style="text-align:right;">Targets self<br>4 minutes 59 seconds recharge</div>\
+</div><br>\
+SELF RESURRECTION AND HEAL<br><br>\
+Rebirth allows you to recover from defeat to take vengeance upon your enemies.<br><br>\
+CLICK<br>\
+<ul>\
+  <li>Can only be used while Defeated.</li>\
+  <li>Instantly recovers the user from defeat with full health.</li>\
+  <li>You then lose Health Points of your Maximum Health every 1 sec for 20 sec (5% per second).</li>\
+  <li>During this time, you gain +100% all damage strength and +100% resistance to all damage.</li>\
+  <li>Defeating any enemy returns Health Points.</li>\
+  <li>Places all Resurrection powers on a 300 second cooldown.</li>\
+</ul>';
+dataPower[dataPower.length] = new Power(dataPower.length, 'Rebirth', '<img src="img/power-icons/infernal-supernatural/InfernalSupernatural_Rebirth.png" />&nbsp;Rebirth', 6, 24, pow++, 3, rebirthHtml);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Grave Consequences', 'Grave Consequences', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Grave Consequences', 'Grave Consequences', 2, null, 'Summons three Zombies to help your return to the land of the living succeed.'));
 
 //------------------------------------------------------------------------------
 // Infernal Supernatural: Ultimates
@@ -9423,7 +9983,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Planar
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Double Vortex', 'Double Vortex', 2, null, dataPowerAlias['DV'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Endbringer\'s Grasp'].name, dataPowerAlias['Endbringer\'s Grasp'].desc, 6, 24, pow++, 4, dataPowerAlias['Endbringer\'s Grasp'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -9439,14 +9999,14 @@ dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Feral 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, null));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Need a Nap', 'I Need a Nap', 2, null, dataPowerAlias['INAN'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Intimidation', 'Intimidation', 1, null, dataPowerAlias['I'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Corrosive Pit'].name, dataPowerAlias['Corrosive Pit'].desc, 6, 24, pow++, 4, dataPowerAlias['Corrosive Pit'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Toxicity', 'Toxicity', 2, null, dataPowerAlias['T'].tip));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Transcendence'].name, dataPowerAlias['Transcendence'].desc, 6, 24, pow++, 4, dataPowerAlias['Transcendence'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));

@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-06-13 03:10:00 (woof-wolf)>
+ * Time-stamp: <2026-08-19 03:25:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -25781,7 +25781,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, 'Frenzy', '<img src="i
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Fear Sense', 'Fear Sense', 2, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Fear Sense', 'Fear Sense', 2, null, frenzy.fearSense));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Poison Tipped Claws', 'Poison Tipped Claws', 2, null, frenzy.poisonTippedClaws));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Blood in the Water', 'Blood in the Water', 2, null, frenzy.bloodInTheWater));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));

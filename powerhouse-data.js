@@ -8223,7 +8223,8 @@ const detonationRound = {
   '<div>\
   DEVASTATION<br>\
   <ul>\
-    <li>Applies <strong>Armor Piercing</strong> to your primary target. <strong>Armor Piercing</strong> increases Piercing and Crushing damage targets receive for a short time.</li>\
+    <li>If your primary target is affected by <strong>Frail Armor</strong>, has a <strong>20% chance</strong> to spread the effect to up to <strong>5 targets</strong> within <strong>15ft</strong> on the initial hit. This chance is guaranteed if targets are affected by <strong>Fear</strong>.</li>\
+    <li>Additionally, refreshes the duration of <strong>Frail Armor</strong> on affected targets once every <strong>every 8 sec</strong> for <strong>16 sec</strong>.</li>\
   </ul>\
   </div>',
 
@@ -8697,7 +8698,7 @@ const gatlingArm = {
   '<div>\
   OPPORTUNISTIC<br>\
   <ul>\
-    <li>This powers deals additional base damage when used against a target affected by <strong>Armor Piercing</strong>.</li>\
+    <li>This powers deals additional base damage when used against a target affected by <strong>Frail Armor</strong>.</li>\
   </ul>\
   </div>'
 };

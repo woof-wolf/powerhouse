@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-08-19 03:25:00 (woof-wolf)>
+ * Time-stamp: <2026-08-22 06:35:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -171,6 +171,7 @@ dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.le
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Combatant', 'The Combatant', 'Str: 10, Dex: 10, Int: 8, Ego: 10', 'This is the innate characteristic for The Combatant.<br />Con: 5, End: 5, Str: 10, Dex: 10, Int: 8, Ego: 10, Pre: 5, Rec: 5');
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Fissile', 'The Fissile', 'Dex: 10, Int: 10, Ego: 8, Rec: 10', 'This is the innate characteristic for The Fissile.<br />Con: 5, End: 5, Str: 5, Dex: 10, Int: 10, Ego: 8, Pre: 5, Rec: 10');
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Overseer', 'The Overseer', 'End: 8, Int: 10, Ego: 10, Pre: 10', 'This is the innate characteristic for The Overseer.<br />Con: 5, End: 8, Str: 5, Dex: 5, Int: 10, Ego: 10, Pre: 10, Rec: 5');
+dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Renegade', 'The Renegade', 'Con: 8, End: 8, Dex: 10, Int: 10, Ego: 10, Rec: 10', 'This is the innate characteristic for The Renegade.<br />Con: 8, End: 8, Str: 5, Dex: 10, Int: 10, Ego: 10, Pre: 5, Rec: 10');
 
 //==============================================================================
 // Talents
@@ -6931,6 +6932,45 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Paint the Target', 'Paint the Target', 2, null, steadyShot.paintTheTarget));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
+const steadyFire = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br><br>ENERGY BUILDER - RANGED DAMAGE<br><br>MAINTAIN</div>\
+  </div>\
+  <hr>\
+  <div class="popup-header">\
+    <div>INITIAL HIT<br>0 + 0 Energy every 0.5 sec<br>0.5 sec activate time (No max)</div>\
+    <div style="text-align:right;">Targets foe<br>50 feet</div>\
+  </div>\
+  <ul>\
+    <li>Deals 49 Piercing Damage and generates +14% Energy.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>SUBSEQUENT HITS<br>0 + 0 Energy every 0.5 sec<br>0.5 sec activate time (No max)</div>\
+    <div style="text-align:right;">Targets foe<br>50 feet</div>\
+  </div>\
+  <ul>\
+    <li>Deals 35 Piercing Damage and generates +10% Energy every 0.5 sec.</li>\
+  </ul>',
+
+  paintTheTarget:
+  '<div>\
+  PAINT THE TARGET<br>\
+  <ul>\
+    <li>Each shot focuses your aim, increasing your chance to <strong>Critically Hit</strong> and your <strong>Critical Severity</strong>.</li>\
+    <li>This effect is consumed when you perform a <strong>Critical Hit</strong>.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Steady Fire', '<img src="img/power-icons/munitions/Munitions_SteadyFire.png" />&nbsp;Steady Fire', 2, 7, pow++, -1, steadyFire.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Paint the Target', 'Paint the Target', 2, null, steadyFire.paintTheTarget));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+
 //------------------------------------------------------------------------------
 // Munitions: Tier 0
 //------------------------------------------------------------------------------
@@ -7057,6 +7097,44 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stop Rig
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
+const backhandStrike = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>18 Energy cost<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>10 feet</div>\
+  </div><br>\
+  MELEE DAMAGE - STUN<br><br>\
+  CLICK<br>\
+  <ul>\
+    <li>Deals 127 Crushing Damage and your target is Stunned for 1.7 sec.</li>\
+  </ul>',
+
+  headTrauma:
+  '<div>\
+  HEAD TRAUMA<br>\
+  <ul>\
+    <li>Applies or refreshes <strong>Trauma</strong> on your target. <strong>Trauma</strong> ends any healing over time effects on your target, and causes all healing on them to be less effective.</li>\
+  </ul>\
+  </div>',
+
+  stopRightThere:
+  '<div>\
+  STOP RIGHT THERE!<br>\
+  <ul>\
+    <li>This power no longer <strong>Stuns</strong>. Instead, this power now <strong>Interrupts</strong> the target.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Backhand Strike', '<img src="img/power-icons/munitions/Munitions_BackhandStrike.png" />&nbsp;Backhand Strike', 2, 7, pow++, 1, backhandStrike.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Head Trauma', 'Head Trauma', 2, null, backhandStrike.headTrauma));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stop Right There!', 'Stop Right There!', 2, null, backhandStrike.stopRightThere));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+
 const holdoutShot = {
   power: 
   '<div class="popup-header">\
@@ -7152,6 +7230,47 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Stim Pac
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Open Wound', 'Open Wound', 2, null, tripWire.openWound));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+
+const wristBlaster = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>29-47 Energy cost<br>1.17 sec charge time<br>0.83 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet</div>\
+  </div><br>\
+  RANGED DAMAGE - BLAST - KNOCK<br><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>Deals 193-460 Piercing Damage based on charge time, and has a 56-100% chance to Knock Back targets within 20ft of you 17ft.</li>\
+    <li>Foes further away have a 56-100% chance to be Knocked Down.</li>\
+  </ul>',
+
+  frailArmor:
+  '<div>\
+  FRAIL ARMOR<br>\
+  <ul>\
+    <li>When this power is fully charged applies <strong>Frail Armor</strong>, reducing your target\\\'s resistance to <strong>Piercing</strong> damage for a short time.</li>\
+  </ul>\
+  </div>',
+
+  seeingRed:
+  '<div>\
+  SEEING RED<br>\
+  <ul>\
+    <li>Chance to apply <strong>Furious</strong>, granting you a bonus to Critically Hit. Chance is guaranteed when fully charged.</li>\
+    <li>If you are struck by an attack while <strong>Furious</strong>, you will gain <strong>Willpower</strong>, which will heal you for a small amount.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Wrist Blaster', '<img src="img/power-icons/munitions/Munitions_WristBlaster.png" />&nbsp;Wrist Blaster', 2, 7, pow++, 1, wristBlaster.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Frail Armor', 'Frail Armor', 2, null, wristBlaster.frailArmor));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Seeing Red', 'Seeing Red', 2, null, wristBlaster.seeingRed));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
 const shotgunBlast = {
   power: 
@@ -7442,6 +7561,111 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(10, 'PVD: U-MD Ghosthunter Phase Rifle', 'PVD: U-MD Ghosthunter Phase Rifle', 0, null, submachinegunBurst.umdGhosthunterPhaseRifle));
 
+const heavyFire = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>20 + 13 Energy every 0.5 sec<br>0.5 sec activate time (6 max)</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 60 degree Cone</div>\
+  </div><br>\
+  RANGED AOE DAMAGE - REPEL - KNOCK<br><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Repels affected targets within 20ft of you 4.2ft from you every hit. Foes further away have a 10% chance to be Knocked Down.</li>\
+  </ul>',
+
+  iAmBulletProof:
+  '<div>\
+  I AM BULLET PROOF!<br>\
+  <ul>\
+    <li>Maintaining this power now grants you a shield that increases in strength over time.</li>\
+    <li>This shield will be removed when you stop maintaining the power.</li>\
+  </ul>\
+  </div>',
+
+  assault:
+  '<div>\
+  ASSAULT<br>\
+  <ul>\
+    <li>Refreshes the <strong>Armor Piercing</strong> debuff on your targets.</li>\
+  </ul>\
+  </div>',
+
+  aggression:
+  '<div>\
+  AGGRESSION<br>\
+  <ul>\
+    <li>Adds chance to apply <strong>Bleed</strong> to targets.</li>\
+    <li>Guaranteed chance against targets in close range if the target is not already affected by your <strong>Bleed</strong>.</li>\
+    <li><strong>Bleed</strong> is a type of <strong>Wound</strong>.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Heavy Fire', '<img src="img/power-icons/munitions/Munitions_HeavyFire.png" />&nbsp;Heavy Fire', 2, 7, pow++, 1, heavyFire.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Am Bullet Proof!', 'I Am Bullet Proof!', 2, null, heavyFire.iAmBulletProof));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Assault', 'Assault', 2, null, heavyFire.assault));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Aggression', 'Aggression', 3, null, heavyFire.aggression));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+
+const suppressionFire = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>21 + 15 Energy every 0.5 sec<br>0.5 sec activate time (5 max)</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 60 degree Cone</div>\
+  </div><br>\
+  RANGED AOE DAMAGE - REPEL - SNARE<br><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Repels targets within 20ft of you 4.2ft from you every hit. Foes further away have a 10% chance to be Snared for 13 sec, reducing their movement speed by 100%.</li>\
+  </ul>',
+
+  wallOfBullets:
+  '<div>\
+  WALL OF BULLETS<br>\
+  <ul>\
+    <li>Maintaining this power now grants you a shield that increases in strength over time.</li>\
+    <li>This shield will be removed when you stop maintaining the power.</li>\
+  </ul>\
+  </div>',
+
+  aggression:
+  '<div>\
+  AGGRESSION<br>\
+  <ul>\
+    <li>Adds chance to apply <strong>Bleed</strong> to targets.</li>\
+    <li>Guaranteed chance against targets in close range if the target is not already affected by your <strong>Bleed</strong>.</li>\
+    <li><strong>Bleed</strong> is a type of <strong>Wound</strong>.</li>\
+  </ul>\
+  </div>',
+
+  listenToReason:
+  '<div>\
+  LISTEN TO REASON<br>\
+  <ul>\
+    <li>Chance to apply <strong>Fear</strong> to targets, reducing their damage for a short time.</li>\
+    <li>Refreshes all stacks of <strong>Furious</strong> on you.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Suppression Fire', '<img src="img/power-icons/munitions/Munitions_SuppressionFire.png" />&nbsp;Suppression Fire', 2, 7, pow++, 1, suppressionFire.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Wall of Bullets', 'Wall of Bullets', 2, null, suppressionFire.wallOfBullets));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Aggression', 'Aggression', 2, null, suppressionFire.aggression));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Listen to Reason', 'Listen to Reason', 2, null, suppressionFire.listenToReason));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+
 const composure = {
   power: 
   '<div class="popup-header">\
@@ -7489,6 +7713,40 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, nul
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataRequireGroupPower[dataPower.length-1] = 'technology';
+
+const returnFire = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>Every 1 sec<br>Instant activate time</div>\
+    <div style="text-align:right;">Targets self</div>\
+  </div><br>\
+  BLOCK<br><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>Grants 250% bonus resistance to all damage while blocking.</li>\
+    <li>In addition, your movement speed is reduced by 100% and your resistance to Hold and Knock effects is increased by 100%.</li>\
+    <li>Gives you Energy when struck by an attack while blocking. This amount scales with your RECOVERY and the amount of damage you take.</li>\
+    <li>For up to 4 sec after you begin blocking, if you are attacked from more than 10ft away, you will return a portion of one incoming attack to the attacker as Piercing damage. If you are attacked within 10ft, you will return a smaller portion of one incoming attack to up to 5 targets within 10ft and Knock them back.</li>\
+    <li>This effect has a cooldown of 5 sec and cannot be triggered again until you release and reapply this block.</li>\
+  </ul>',
+
+  coveringFire:
+  '<div>\
+  COVERING FIRE<br>\
+  <ul>\
+    <li>If you have the <strong>Return Fire</strong> power slotted, this advantage will cause it to activate when you make a ranged attack.</li>\
+    <li>This increases your <strong>Dodge Rating</strong>, <strong>Avoidance Rating</strong>, and <strong>Knock Resistance</strong> for a short time.</li>\
+    <li>The bonuses to <strong>Dodge</strong> and <strong>Avoidance Rating</strong> scale with your <strong>DEXTERITY</strong>.</li>\
+    <li>Slightly lowers your damage while this effect is activated.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Return Fire', '<img src="img/power-icons/munitions/Munitions_ReturnFire.png" />&nbsp;Return Fire', 2, 7, pow++, 1, returnFire.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Covering Fire', 'Covering Fire', 3, null, returnFire.coveringFire));
 
 const killerInstinct = {
   power: 
@@ -7788,6 +8046,19 @@ const gatlingGun = {
     <li>When fully maintained, has a 100% chance to apply Armor Piercing.</li>\
   </ul>',
 
+  powerPTS: 
+  '<div class="popup-header">\
+    <div>Munitions<br>32 + 25 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 3 foot Cylinder</div>\
+  </div><br>\
+  RANGED AOE DAMAGE - DEBUFF<br><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>Deals 131 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Has a 10% chance every hit to apply Armor Piercing to affected targets, reducing their Crushing and Piercing resistance for your attacks by 15% for 15 sec.</li>\
+    <li>When fully maintained has a 100% chance to apply Armor Piercing.</li>\
+  </ul>',
+
   listenToReason:
   '<div>\
   LISTEN TO REASON<br>\
@@ -7934,6 +8205,46 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Scorched
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
+const detonationRound = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>78-96 Energy cost<br>0.83 sec charge time<br>0.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 15 foot Sphere<br>15 seconds recharge</div>\
+  </div><br>\
+  RANGED AOE DAMAGE - DOT - INTERRUPT - KNOCK<br><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>Deals 127-271 Piercing Damage and deals an additional 27 Piercing Damage every 1 sec for 16 sec to all targets.</li>\
+    <li>When partially charged, Interrupts your primary target and has a 50% chance to affect other affected targets.</li>\
+    <li>When fully charged, instead Knocks Up affected targets 17ft.</li>\
+  </ul>',
+
+  devastation:
+  '<div>\
+  DEVASTATION<br>\
+  <ul>\
+    <li>Applies <strong>Armor Piercing</strong> to your primary target. <strong>Armor Piercing</strong> increases Piercing and Crushing damage targets receive for a short time.</li>\
+  </ul>\
+  </div>',
+
+  openWound:
+  '<div>\
+  OPEN WOUND<br>\
+  <ul>\
+    <li>Causes wounds to open up on your primary target over time, inflicting <strong>Bleed</strong>.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Detonation Round', '<img src="img/power-icons/munitions/Munitions_DetonationRound.png" />&nbsp;Detonation Round', 2, 7, pow++, 2, detonationRound.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Devastation', 'Devastation', 2, null, detonationRound.devastation));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Open Wound', 'Open Wound', 2, null, detonationRound.openWound));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+
 const breakawayShot = {
   power: 
   '<div class="popup-header">\
@@ -8049,6 +8360,38 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, nul
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Escape Artist', 'Escape Artist', 2, null, smokeGrenade.escapeArtist));
+
+const combatDrones = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>35 Energy cost<br>2 sec charge time (2 min)<br>0.87 sec activate time</div>\
+    <div style="text-align:right;">Targets self</div>\
+  </div><br>\
+  CONTROLLABLE PET<br><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>Summons 2 Combat Drones. These drones have 2 modes, Support Mode and Offense Mode.</li>\
+    <li>In their default Support Mode, they will use a Healing Beam on friendly targets, healing them for +22 Health Points (Base) every 0.5 sec.</li>\
+    <li>In Offense Mode, they use Gatling Gun to attack your foes, dealing 17 Piercing Damage (Base) every 0.5 sec.</li>\
+    <li>Maintaining control of your pets reduces your Energy Recovery and Energy Gain, and increases the Energy Cost of your powers.</li>\
+  </ul>\
+  CUSTOM ABILITY<br>\
+  <ul>\
+    <li>This pet can be instructed to activate the following ability with a button on its control bar:\
+    <br>Transform - This power instantly toggles your Combat Drones between Healing and Offense modes.</li>\
+  </ul>\
+  RANK UP BENEFITS<br>\
+  <ul>\
+    <li>R1: In Healing Mode, your Combat Drones have a strong, single target maintained Healing Beam. In Offense Mode, they use a quick firing but relatively weak Gatling Gun.</li>\
+    <li>R2: The Healing Beam and Gatling Gun are upgraded to affect all targets in a line.</li>\
+    <li>R3: The Healing Beam now affects all allies in a sphere around the main healing target, and Gatling Gun can refresh a portion of your Frail Armor or Armor Piercing debuffs.</li>\
+  </ul>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Combat Drones', '<img src="img/power-icons/munitions/Munitions_CombatDrones.png" />&nbsp;Combat Drones', 2, 7, pow++, 2, combatDrones.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 
 const lockNLoad = {
   power: 
@@ -8336,6 +8679,36 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, 'PVD: Frost Ice Rifle', 'PVD: Frost Ice Rifle', 0, null, assaultRifle.frostIceRifle));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, 'PVD: Qularr Toxic Rifle', 'PVD: Qularr Toxic Rifle', 0, null, assaultRifle.qularrToxicRifle));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, 'PVD: Pulp Fiction Rifle', 'PVD: Pulp Fiction Rifle', 0, null, assaultRifle.pulpFictionRifle));
+
+const gatlingArm = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>26 + 19 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet</div>\
+  </div><br>\
+  RANGED DAMAGE - FURIOUS<br><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>Deals 151 Piercing Damage every 0.5 sec.</li>\
+    <li>Has a 10% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for 300 health over 3 sec.</li>\
+  </ul>',
+
+  opportunistic:
+  '<div>\
+  OPPORTUNISTIC<br>\
+  <ul>\
+    <li>This powers deals additional base damage when used against a target affected by <strong>Armor Piercing</strong>.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Gatling Arm', '<img src="img/power-icons/munitions/Munitions_GatlingArm.png" />&nbsp;Gatling Arm', 2, 7, pow++, 3, gatlingArm.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Opportunistic', 'Opportunistic', 2, null, gatlingArm.opportunistic));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
 const leadTempest = {
   power: 
@@ -28280,18 +28653,19 @@ The Predator, Melee
 The Psychokinetic, Ranged
 The Radiant, Support
 
+The Renegade, Ranged
 The Rockstar, Tank
 The Samurai, Tank
 The Savage, Hybrid
 The Scourge, Ranged
-The Soldier, Ranged
 
+The Soldier, Ranged
 The Specialist, Hybrid
 The Squall, Ranged
 The Tempest, Ranged
 The Tenebrous, Support
-The Unleashed, Melee
 
+The Unleashed, Melee
 The Void, Hybrid
 The Witch, Support
 The Wrecker, Melee
@@ -28482,6 +28856,12 @@ dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The P
 //------------------------------------------------------------------------------
 
 dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The Radiant', '<img src="img/archetype-icons/Archetype_Radiant.png" />&nbsp;The Radiant', 'Support', ['Presence', 'Ego', 'Intelligence'], 'The Radiant', ['Eldritch Bolts', 'Rebuke', 'Vengeance', 'Seraphim', 'Expulse', 'Compassion', ['Circle of Radiant Glory', 'Sigils of Radiant Sanctuary'], 'Eldritch Shield', 'Arcane Vitality', ['Binding of Aratron', 'Soul Mesmerism'], 'Divine Renewal', 'Planar Fracture'], ['Presence', 'Sentry', 'Sentinel'], '<b>The Radiant, Support</b>');
+
+//------------------------------------------------------------------------------
+// The Renegade, Ranged
+//------------------------------------------------------------------------------
+
+dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The Renegade', '<img src="img/archetype-icons/Archetype_Renegade.png" />&nbsp;The Renegade', 'Ranged', ['Dexterity', 'Recovery', 'Ego'], 'The Renegade', ['Steady Fire', 'Wrist Blaster', 'Suppression Fire', 'Targeting Computer', 'Killer Instinct', ['Combat Drones', 'Mini Mines'], 'Return Fire', 'Gatling Arm', 'Sharp Shooter', ['Smoke Grenade', 'Lock N Load'], 'Detonation Round', 'Strafing Run'], ['Dexterity', 'Vindicator', 'Avenger'], '<b>The Renegade, Ranged</b>');
 
 //------------------------------------------------------------------------------
 // The Rockstar, Tank

@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-03 06:40:00 (woof-wolf)>
+ * Time-stamp: <2026-09-03 06:50:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -7419,7 +7419,7 @@ const shotgunBlast = {
     <div>Munitions<br>30-50 Energy cost<br>0.83 sec charge time<br>0.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>50 feet; 30 degree Cone</div>\
   </div><br>\
-  CHARGE<br>\
+  CHARGE - BLAST<br>\
   <ul>\
     <li>This device has different values if you own the Shotgun power.</li>\
     <li>Deals 141-301 Toxic Damage to all targets.</li>\
@@ -7512,7 +7512,7 @@ const bulletHail = {
   <ul>\
     <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
     <li>Has a 10% chance every hit to apply Furious to you.</li>\
-    <li>Furious gives you +1.5% Critical Chance for 12 sec, this effect can stack up to 3 times.</li>\
+    <li>Furious gives you +1.5% Critical Chance for 15 sec, this effect can stack up to 3 times.</li>\
     <li>When taking damage Furious grants you Willpower, which gives you +300 Health Points over 3 seconds.</li>\
   </ul>',
 
@@ -7574,7 +7574,7 @@ const submachinegunBurst = {
   <ul>\
     <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
     <li>Has a 10% chance every hit to apply Furious to you.</li>\
-    <li>Furious gives you +1.5% Critical Chance for 12 sec, this effect can stack up to 3 times.</li>\
+    <li>Furious gives you +1.5% Critical Chance for 15 sec, this effect can stack up to 3 times.</li>\
     <li>When taking damage, Furious grants you Willpower, which gives you +300 Health Points over 3 seconds.</li>\
   </ul>',
 
@@ -8477,7 +8477,7 @@ const lockNLoad = {
     <li>Applies 1,860 Break Free damage to any Holds, Roots, or Disables affecting you.</li>\
     <li>Applies 1 stack of Furious on you.</li>\
     <li>Refreshes all Furious stacks on you while this effect is active.</li>\
-    <li>Furious gives you +1.5% Critical Chance for 12 sec; this effect can stack up to 3 times.</li>\
+    <li>Furious gives you +1.5% Critical Chance for 15 sec; this effect can stack up to 3 times.</li>\
     <li>When taking damage, Furious grants you Willpower, which gives you +300 Health Points over 3 seconds. Willpower can stack up to 3 times.</li>\
     <li>Activates a shared cooldown of 90 seconds on all Active Offenses.</li>\
   </ul>',
@@ -8599,7 +8599,7 @@ const twoGunMojo = {
   MAINTAIN<br>\
   <ul>\
     <li>Deals 163 Piercing Damage every 0.5 sec.</li>\
-    <li>Has a 15% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
+    <li>Has a 15% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 15 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
   </ul>',
 
   closeTheGap:
@@ -8759,7 +8759,7 @@ const gatlingArm = {
   MAINTAIN<br>\
   <ul>\
     <li>Deals 151 Piercing Damage every 0.5 sec.</li>\
-    <li>Has a 10% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
+    <li>Has a 10% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 15 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
   </ul>',
 
   opportunistic:
@@ -11379,8 +11379,8 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'UPVD: Ul
 const strafingRun = {
   power: 
   '<div class="popup-header">\
-    <div>Gadgeteering<br>126 Energy cost<br>1.67 sec activate time</div>\
-    <div style="text-align:right;">Targets foe<br>50 feet<br>20 seconds recharge</div>\
+    <div>Gadgeteering<br>138 Energy cost<br>1.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet<br>20 seconds recharge</div>\
   </div><br>\
   RANGED AOE DAMAGE - BURNING<br><br>\
   CLICK<br>\
@@ -14501,7 +14501,7 @@ const rendAndTear = {
     <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 220 degree Cone</div>\
   </div>\
   <ul>\
-    <li>Deals 332 Slashing Damage and applies Furious to you, increasing your chance to critically hit by 1.5% for 12 sec. Stacks up to 3 times.</li>\
+    <li>Deals 332 Slashing Damage and applies Furious to you, increasing your chance to critically hit by 1.5% for 15 sec. Stacks up to 3 times.</li>\
     <li>When taking damage, Furious grants you Willpower, which heals you for +300 Health Points over 3 sec.</li>\
   </ul>',
 

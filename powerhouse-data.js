@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-02 09:00:00 (woof-wolf)>
+ * Time-stamp: <2026-09-03 06:40:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -9325,7 +9325,7 @@ const energyShield = {
   '<div>\
   LASER KNIGHT<br>\
   <ul>\
-    <li>If you have the Energy Shield power slotted, this advantage will cause it to activate when you make a melee attack, increasing your defense for a few seconds, but slightly lowering the attack\\\'s damage.</li>\
+    <li>If you have the Energy Shield power slotted, this advantage will cause it to activate when you make a melee attack, increasing your resistance to damage and knock effects for a short time, but slightly lowering the attack\\\'s damage.</li>\
   </ul>\
   </div>',
 
@@ -9333,7 +9333,7 @@ const energyShield = {
   '<div>\
   PHALANX DEFENSE SYSTEM<br>\
   <ul>\
-    <li>If you have the Energy Shield power slotted, this advantage will cause it to activate when you make a Power Armor Slot (Chest, Hand, or Shoulder) attack, increasing your defense for a few seconds.</li>\
+    <li>If you have the Energy Shield power slotted, this advantage will cause it to activate when you make a ranged attack, increasing your resistance to damage and knock effects for a short time.</li>\
   </ul>\
   </div>'
 };
@@ -11396,6 +11396,14 @@ const strafingRun = {
   <ul>\
     <li>This power now deals Particle damage instead of Fire.</li>\
   </ul>\
+  </div>',
+
+  explosiveRounds:
+  '<div>\
+  EXPLOSIVE ROUNDS<br>\
+  <ul>\
+    <li>This power now <strong>Knocks Up</strong> affected targets on the last hit.</li>\
+  </ul>\
   </div>'
 };
 
@@ -11404,7 +11412,8 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, nul
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Chemical Fire', 'Chemical Fire', 1, null, strafingRun.chemicalFire));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Explosive Rounds', 'Explosive Rounds', 2, null, strafingRun.explosiveRounds));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
 const detonatorSwitch = {
   power: 

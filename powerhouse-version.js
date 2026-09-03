@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-02 07:40:00 (woof-wolf)>
+ * Time-stamp: <2026-09-03 06:40:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -962,7 +962,17 @@ dataVersionUpdate[dataVersionUpdate.length] = new VersionUpdate(
             if (codeNum1 == 7 && codeNum2 >= 40) power++;
 
             return power;
-        case 'mask': return value['mask'];
+        case 'mask': 
+            // Add Strafing Run: Explosive Rounds advantage
+            // 4th advantage b0001 0000 should turn into 5th advantage b0010 0000
+            // So if we were sent something like b0001 1110, we should return b0010 1110
+            // b0001 1110 + (b0001 1110 & b0001 0000)
+            // (b0001 1110 & b0001 0000) = b0001 0000
+            // b0001 1110 + b0001 0000 = b0010 1110 
+            // TODO: Maybe make const variables for adding 3rd adv, 4th adv, etc. to avoid magic numbers.
+            if (value['type'] == 'power' && codeNum1 == 9 && codeNum2 == 42) return value['mask'] + (value['mask']&16);
+        
+            return value['mask'];
         case 'specializationTree': return value['specializationTree'];
         case 'specialization': return value['specialization'];
         }

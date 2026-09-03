@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-08-22 06:35:00 (woof-wolf)>
+ * Time-stamp: <2026-09-02 07:40:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -171,7 +171,9 @@ dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.le
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Combatant', 'The Combatant', 'Str: 10, Dex: 10, Int: 8, Ego: 10', 'This is the innate characteristic for The Combatant.<br />Con: 5, End: 5, Str: 10, Dex: 10, Int: 8, Ego: 10, Pre: 5, Rec: 5');
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Fissile', 'The Fissile', 'Dex: 10, Int: 10, Ego: 8, Rec: 10', 'This is the innate characteristic for The Fissile.<br />Con: 5, End: 5, Str: 5, Dex: 10, Int: 10, Ego: 8, Pre: 5, Rec: 10');
 dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Overseer', 'The Overseer', 'End: 8, Int: 10, Ego: 10, Pre: 10', 'This is the innate characteristic for The Overseer.<br />Con: 5, End: 8, Str: 5, Dex: 5, Int: 10, Ego: 10, Pre: 10, Rec: 5');
-dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Renegade', 'The Renegade', 'Con: 8, End: 8, Dex: 10, Int: 10, Ego: 10, Rec: 10', 'This is the innate characteristic for The Renegade.<br />Con: 8, End: 8, Str: 5, Dex: 10, Int: 10, Ego: 10, Pre: 5, Rec: 10');
+dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Renegade', 'The Renegade', 'End: 8, Dex: 10, Ego: 10, Rec: 10', 'This is the innate characteristic for The Renegade.<br />Con: 5, End: 8, Str: 5, Dex: 10, Int: 5, Ego: 10, Pre: 5, Rec: 10');
+
+dataInnateTalent[dataInnateTalent.length] = new InnateTalent(dataInnateTalent.length, 'The Vanguard', 'The Vanguard', 'Con: 10, End: 8, Ego: 10, Rec: 10', 'This is the innate characteristic for The Vanguard.<br />Con: 10, End: 8, Str: 5, Dex: 5, Int: 5, Ego: 10, Pre: 5, Rec: 10');
 
 //==============================================================================
 // Talents
@@ -6971,9 +6973,88 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Paint the Target', 'Paint the Target', 2, null, steadyFire.paintTheTarget));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
+const rollingFire = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br><br>ENERGY BUILDER - RANGED DAMAGE<br><br>MAINTAIN</div>\
+  </div>\
+  <hr>\
+  <div class="popup-header">\
+    <div>INITIAL HIT<br>0 + 0 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div style="text-align:right;">Targets foe<br>50 feet</div>\
+  </div>\
+  <ul>\
+    <li>Deals 49 Piercing Damage and generates +14% Energy.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>SUBSEQUENT HITS<br>0 + 0 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div style="text-align:right;">Targets foe<br>50 feet</div>\
+  </div>\
+  <ul>\
+    <li>Deals 35 Piercing Damage and generates +10% Energy every 0.5 sec.</li>\
+  </ul>',
+
+  moreBullets:
+  '<div>\
+  MORE BULLETS<br>\
+  <ul>\
+    <li>Changes this power to deal damage in a Cylinder instead of to only a single target.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Rolling Fire', '<img src="img/power-icons/munitions/Munitions_RollingFire.png" />&nbsp;Rolling Fire', 2, 7, pow++, -1, rollingFire.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'More Bullets', 'More Bullets', 2, null, rollingFire.moreBullets));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+
 //------------------------------------------------------------------------------
 // Munitions: Tier 0
 //------------------------------------------------------------------------------
+
+const heavyBurst = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>29-50 Energy cost<br>1.33 sec charge time<br>0.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet</div>\
+  </div><br>\
+  RANGED DAMAGE - BLAST - FURIOUS<br><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>Deals 193-496 Piercing Damage based on charge time, and has a 45-100% chance to apply a stack of Furious to you.</li>\
+    <li>Furious gives you +1.5% Critical Chance for 15 sec. This effect can stack up to 3 times.</li>\
+    <li>When taking damage, Furious grants you Willpower, which gives you +300 Health Points over 3 seconds. Willpower can stack up to 3 times.</li>\
+  </ul>',
+
+  armorPiercing:
+  '<div>\
+  ARMOR PIERCING<br>\
+  <ul>\
+    <li>When this power is fully charged, applies <strong>Armor Piercing</strong>, reducing your target\\\'s resistance to your <strong>Crushing</strong> and <strong>Piercing</strong> damage for a short time.</li>\
+  </ul>\
+  </div>',
+
+  highVelocityRounds:
+  '<div>\
+  HIGH VELOCITY ROUNDS<br>\
+  <ul>\
+    <li>Chance to <strong>Knock Back</strong> targets.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Heavy Burst', '<img src="img/power-icons/munitions/Munitions_HeavyBurst.png" />&nbsp;Heavy Burst', 2, 7, pow++, 0, heavyBurst.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Armor Piercing', 'Armor Piercing', 2, null, heavyBurst.armorPiercing));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'High Velocity Rounds', 'High Velocity Rounds', 2, null, heavyBurst.highVelocityRounds));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
 const burstShot = {
   power: 
@@ -7606,9 +7687,9 @@ dataPower[dataPower.length] = new Power(dataPower.length, 'Heavy Fire', '<img sr
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Am Bullet Proof!', 'I Am Bullet Proof!', 2, null, heavyFire.iAmBulletProof));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'I Am Bullet Proof!', 'I Am Bullet Proof!', 3, null, heavyFire.iAmBulletProof));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Assault', 'Assault', 2, null, heavyFire.assault));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Aggression', 'Aggression', 3, null, heavyFire.aggression));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Aggression', 'Aggression', 2, null, heavyFire.aggression));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
@@ -7659,7 +7740,7 @@ dataPower[dataPower.length] = new Power(dataPower.length, 'Suppression Fire', '<
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Wall of Bullets', 'Wall of Bullets', 2, null, suppressionFire.wallOfBullets));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Wall of Bullets', 'Wall of Bullets', 3, null, suppressionFire.wallOfBullets));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Aggression', 'Aggression', 2, null, suppressionFire.aggression));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Listen to Reason', 'Listen to Reason', 2, null, suppressionFire.listenToReason));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
@@ -8035,19 +8116,6 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPower
 const gatlingGun = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>30 + 23 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
-    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 3 foot Cylinder</div>\
-  </div><br>\
-  RANGED AOE DAMAGE - DEBUFF<br><br>\
-  MAINTAIN<br>\
-  <ul>\
-    <li>Deals 65 Piercing Damage 2 times every 0.5 sec to all targets.</li>\
-    <li>Has a 10% chance every hit to apply Armor Piercing to affected targets, reducing their Crushing and Piercing resistance for your attacks by 15% for 15 sec.</li>\
-    <li>When fully maintained, has a 100% chance to apply Armor Piercing.</li>\
-  </ul>',
-
-  powerPTS: 
-  '<div class="popup-header">\
     <div>Munitions<br>32 + 25 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 3 foot Cylinder</div>\
   </div><br>\
@@ -8384,8 +8452,8 @@ const combatDrones = {
   RANK UP BENEFITS<br>\
   <ul>\
     <li>R1: In Healing Mode, your Combat Drones have a strong, single target maintained Healing Beam. In Offense Mode, they use a quick firing but relatively weak Gatling Gun.</li>\
-    <li>R2: The Healing Beam and Gatling Gun are upgraded to affect all targets in a line.</li>\
-    <li>R3: The Healing Beam now affects all allies in a sphere around the main healing target, and Gatling Gun can refresh a portion of your Frail Armor or Armor Piercing debuffs.</li>\
+    <li>R2: The Healing Beam and Gatling Gun are upgraded to affect all targets in a line, and Gatling Gun gains a small chance to <strong>Fear</strong> targets.</li>\
+    <li>R3: The Healing Beam now affects all allies in a sphere around the main healing target, and Gatling Gun can refresh a portion of your <strong>Frail Armor</strong> or <strong>Armor Piercing</strong> debuffs.</li>\
   </ul>'
 };
 
@@ -8531,7 +8599,7 @@ const twoGunMojo = {
   MAINTAIN<br>\
   <ul>\
     <li>Deals 163 Piercing Damage every 0.5 sec.</li>\
-    <li>Has a 15% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for 300 health over 3 sec.</li>\
+    <li>Has a 15% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
   </ul>',
 
   closeTheGap:
@@ -8691,7 +8759,7 @@ const gatlingArm = {
   MAINTAIN<br>\
   <ul>\
     <li>Deals 151 Piercing Damage every 0.5 sec.</li>\
-    <li>Has a 10% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for 300 health over 3 sec.</li>\
+    <li>Has a 10% chance every hit to apply Furious, increasing your Critical Chance by 1.5% for 12 sec. Stacks up to 3 times. When taking damage, Furious grants you Willpower, healing you for +300 Health Points over 3 sec.</li>\
   </ul>',
 
   opportunistic:
@@ -8749,6 +8817,47 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Tread Softly', 'Tread Softly', 2, null, leadTempest.treadSoftly));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Maybe I\'m Just Better', 'Maybe I\'m Just Better', 2, null, leadTempest.maybeImJustBetter));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+
+const tacticalStrike = {
+  power: 
+  '<div class="popup-header">\
+    <div>Munitions<br>76 Energy cost<br>0.83 sec charge time (0.83 min)<br>0.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet<br>15 seconds recharge</div>\
+  </div><br>\
+  RANGED AOE DAMAGE - DISORIENT - KNOCK<br><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>This power must be fully charged to activate.</li>\
+    <li>After 2.5 sec, deals 1,085 Crushing Damage to foes within 15ft.</li>\
+    <li>Knocks affected targets together 17ft and applies Disorient, reducing damage by 10% and movement speed by 50% for 12 sec.</li>\
+  </ul>',
+
+  blastRadius:
+  '<div>\
+  BLAST RADIUS<br>\
+  <ul>\
+    <li>This power now <strong>Knocks Back</strong> targets.</li>\
+  </ul>\
+  </div>',
+
+  stimPack:
+  '<div>\
+  STIM PACK<br>\
+  <ul>\
+    <li>Applies <strong>Restoration</strong>, which gives you a heal over time.</li>\
+    <li>Heals for an additional amount if your health is low.</li>\
+    <li>Has a short internal cooldown after use.</li>\
+  </ul>\
+  </div>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Tactical Strike', '<img src="img/power-icons/munitions/Munitions_TacticalStrike.png" />&nbsp;Tactical Strike', 2, 7, pow++, 3, tacticalStrike.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Blast Radius', 'Blast Radius', 1, null, tacticalStrike.blastRadius));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stim Pack', 'Stim Pack', 2, null, tacticalStrike.stimPack));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
 //------------------------------------------------------------------------------
@@ -14384,7 +14493,7 @@ const rendAndTear = {
   </div>\
   <ul>\
     <li>Deals 332 Slashing Damage and applies Furious to you, increasing your chance to critically hit by 1.5% for 12 sec. Stacks up to 3 times.</li>\
-    <li>When taking damage, Furious grants you Willpower, which heals you for 300 health over 3 sec.</li>\
+    <li>When taking damage, Furious grants you Willpower, which heals you for +300 Health Points over 3 sec.</li>\
   </ul>',
 
   noCodeOfConduct:
@@ -28667,6 +28776,7 @@ The Tempest, Ranged
 The Tenebrous, Support
 
 The Unleashed, Melee
+The Vanguard, Tank
 The Void, Hybrid
 The Witch, Support
 The Wrecker, Melee
@@ -28923,6 +29033,12 @@ dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The T
 //------------------------------------------------------------------------------
 
 dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The Unleashed', '<img src="img/archetype-icons/Archetype_Unleashed.png" />&nbsp;The Unleashed', 'Melee', ['Dexterity', 'Recovery', 'Strength'], 'The Unleashed', ['Rain of Steel', 'Blade Tempest', 'Form of the Tempest', 'Way of the Warrior', ['Force Snap', 'Strike Down'], ['Force Eruption', 'Eye of the Storm'], ['Bountiful Chi Resurgence', 'Mind Wipe'], 'Dragon\'s Wrath', 'Force Shield', 'Relentless', ['Intensity', 'Field Surge'], ['Containment Field', 'Force Geyser']], ['Dexterity', 'Warden', 'Vindicator'], '<b>The Unleashed, Melee</b>');
+
+//------------------------------------------------------------------------------
+// The Vanguard, Tank
+//------------------------------------------------------------------------------
+
+dataArchetype[dataArchetype.length] = new Archetype(dataArchetype.length, 'The Vanguard', '<img src="img/archetype-icons/Archetype_Vanguard.png" />&nbsp;The Vanguard', 'Tank', ['Ego', 'Recovery', 'Constitution'], 'The Vanguard', ['Rolling Fire', 'Heavy Burst', 'Heavy Fire', 'Invulnerability', 'Concentration', ['Combat Drones', 'Mini Mines'], 'Energy Shield', 'Gatling Gun', 'Killer Instinct', 'Unbreakable', ['Tactical Strike', 'Energy Wave'], 'Implosion Engine'], ['Ego', 'Protector', 'Guardian'], '<b>The Vanguard, Tank</b>');
 
 //------------------------------------------------------------------------------
 // The Void, Hybrid

@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-02 07:40:00 (woof-wolf)>
+ * Time-stamp: <2026-09-02 07:50:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -4810,14 +4810,14 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Triple T
 const typhoon = {
   power: 
   '<div class="popup-header">\
-    <div>Wind<br>2.33 sec charge time<br>0.67 sec activate time</div>\
+    <div>Wind<br>59-177 Energy cost<br>2.33 sec charge time<br>0.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 5 foot Cylinder</div>\
   </div><br>\
   RANGED AOE DAMAGE - REPEL<br><br>\
   CHARGE<br>\
   <ul>\
-    <li>Deals Crushing Damage and Cold Damage to all targets and they have a 25-100% chance to be Repelled.</li>\
-    <li>Targets have a 50% chance to be Knocked Down. If they are Disoriented, they have a 100% chance to be Staggered and Knocked Back. If your target is immune to Knock effects, increases this power\\\'s base damage by up to 30% based on charge time.</li>\
+    <li>Deals 120-512 Crushing Damage and 120-512 Cold Damage to all targets, and they have a 25-100% chance to be Repelled 8.7-19ft.</li>\
+    <li>Targets have a 50% chance to be Knocked Down. If they are Disoriented, they instead have a 100% chance to be Staggered and Knocked Back 8.7-19ft. If your target is immune to Knock effects, increases this power\\\'s base damage by up to 30% based on charge time.</li>\
     <li>Stagger reduces all damage resistance by 2% and movement speed by 25% for 15 sec. Stacks up to 3 times.</li>\
   </ul>',
 

@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-02 07:50:00 (woof-wolf)>
+ * Time-stamp: <2026-09-02 09:00:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -9631,7 +9631,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, nul
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Hardened Particle Matrix', 'Hardened Particle Matrix', 3, null, energyWave.hardenedParticleMatrix));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Reverse Polarity', 'Reverse Polarity', 2, null, energyWave.reversePolarity));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Reverse Polarity', 'Reverse Polarity', 1, null, energyWave.reversePolarity));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Recharge', 'Recharge', 2, null, energyWave.recharge));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));

@@ -5,11 +5,11 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-03 06:50:00 (woof-wolf)>
+ * Time-stamp: <2026-09-03 22:00:00 (woof-wolf)>
  *============================================================================*/
 
 var debug = false;
-var version = '1.5.1a';
+var version = '1.5.1b';
 var releaseDate = '2026-09-03';
 var buildVersion = 5;
 
@@ -3680,7 +3680,7 @@ window['buildLink'] = buildLink;
 // Copy build link to clipboard
 function copyBuildLink(event) {
     event.preventDefault(); 
-    var url = window.location.href.replace(/^https?:\/\//, '');
+    var url = window.location.href;
     
     navigator.clipboard.writeText(url).then(function() {
         var button = document.getElementById('buildLink');

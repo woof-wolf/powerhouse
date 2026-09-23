@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-03 06:50:00 (woof-wolf)>
+ * Time-stamp: <2026-09-23 02:40:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -7018,13 +7018,13 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, dataPower
 const heavyBurst = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>29-50 Energy cost<br>1.33 sec charge time<br>0.67 sec activate time</div>\
+    <div>Munitions<br>21-44 Energy cost<br>1.33 sec charge time<br>0.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe<br>100 feet</div>\
   </div><br>\
   RANGED DAMAGE - BLAST - FURIOUS<br><br>\
   CHARGE<br>\
   <ul>\
-    <li>Deals 193-496 Piercing Damage based on charge time, and has a 45-100% chance to apply a stack of Furious to you.</li>\
+    <li>Deals 155-442 Piercing Damage based on charge time, and has a 45-100% chance to apply a stack of Furious to you.</li>\
     <li>Furious gives you +1.5% Critical Chance for 15 sec. This effect can stack up to 3 times.</li>\
     <li>When taking damage, Furious grants you Willpower, which gives you +300 Health Points over 3 seconds. Willpower can stack up to 3 times.</li>\
   </ul>',
@@ -7043,7 +7043,22 @@ const heavyBurst = {
   <ul>\
     <li>Chance to <strong>Knock Back</strong> targets.</li>\
   </ul>\
-  </div>'
+  </div>',
+
+  qularrToxicBurst:
+  '<div>QULARR TOXIC BURST</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Munitions<br>25-40 Energy cost<br>1.33 sec charge time<br>0.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>100 feet</div>\
+  </div><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>This device has different values if you own the Heavy Burst power.</li>\
+    <li>Deals 127-362 Toxic Damage and has a 20-60% chance to apply Deadly Poison, causing 20 Toxic Damage every 1 sec for 16 sec. Stacks up to 5 times.</li>\
+    <li>Additionally, has a 20-60% chance to apply Debilitating Poison to your target, causing -18% resistance to Toxic Damage for 15 sec.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Heavy Burst power.</li>\
+  </ul>'
 };
 
 dataPower[dataPower.length] = new Power(dataPower.length, 'Heavy Burst', '<img src="img/power-icons/munitions/Munitions_HeavyBurst.png" />&nbsp;Heavy Burst', 2, 7, pow++, 0, heavyBurst.power);
@@ -7055,6 +7070,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'High Vel
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, 'PVD: Qularr Toxic Burst', 'PVD: Qularr Toxic Burst', 0, null, heavyBurst.qularrToxicBurst));
 
 const burstShot = {
   power: 
@@ -7504,13 +7520,13 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPower
 const bulletHail = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>17 + 11 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div>Munitions<br>22 + 14 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>50 feet; 45 degree Cone</div>\
   </div><br>\
   RANGED AOE DAMAGE - FURIOUS<br><br>\
   MAINTAIN<br>\
   <ul>\
-    <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Deals 100 Piercing Damage every 0.5 sec to all targets.</li>\
     <li>Has a 10% chance every hit to apply Furious to you.</li>\
     <li>Furious gives you +1.5% Critical Chance for 15 sec, this effect can stack up to 3 times.</li>\
     <li>When taking damage Furious grants you Willpower, which gives you +300 Health Points over 3 seconds.</li>\
@@ -7566,13 +7582,13 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPower
 const submachinegunBurst = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>17 + 11 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div>Munitions<br>22 + 14 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>50 feet; 45 degree Cone</div>\
   </div><br>\
   RANGED AOE DAMAGE - FURIOUS<br><br>\
   MAINTAIN<br>\
   <ul>\
-    <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Deals 100 Piercing Damage every 0.5 sec to all targets.</li>\
     <li>Has a 10% chance every hit to apply Furious to you.</li>\
     <li>Furious gives you +1.5% Critical Chance for 15 sec, this effect can stack up to 3 times.</li>\
     <li>When taking damage, Furious grants you Willpower, which gives you +300 Health Points over 3 seconds.</li>\
@@ -7645,7 +7661,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(10, 'PVD: U-
 const heavyFire = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>20 + 13 Energy every 0.5 sec<br>0.5 sec activate time (6 max)</div>\
+    <div>Munitions<br>21 + 14 Energy every 0.5 sec<br>0.5 sec activate time (6 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 60 degree Cone</div>\
   </div><br>\
   RANGED AOE DAMAGE - REPEL - KNOCK<br><br>\
@@ -7680,7 +7696,23 @@ const heavyFire = {
     <li>Guaranteed chance against targets in close range if the target is not already affected by your <strong>Bleed</strong>.</li>\
     <li><strong>Bleed</strong> is a type of <strong>Wound</strong>.</li>\
   </ul>\
-  </div>'
+  </div>',
+
+  qularrToxicAssault:
+  '<div>QULARR TOXIC ASSAULT</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Munitions<br>20 + 14 Energy every 0.5 sec<br>0.5 sec activate time (6 max)</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 60 degree Cone</div>\
+  </div><br>\
+  MAINTAIN<br>\
+  <ul>\
+    <li>This device has different values if you own the Heavy Fire power.</li>\
+    <li>Deals 85 Toxic Damage every 0.5 sec.</li>\
+    <li>Has a 10% chance every 0.5 sec to apply Deadly Poison to affected targets, causing 20 Toxic Damage every 1 sec for 16 sec. Stacks up to 5 times.</li>\
+    <li>When fully maintained, and if the target is affected by 3 or more of your Deadly Poison, has a 60% chance to apply Noxious Poison to affected targets, causing 36 Toxic Damage every 1 sec for 16 sec to up to 5 foes within 10ft.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Heavy Fire power.</li>\
+  </ul>'
 };
 
 dataPower[dataPower.length] = new Power(dataPower.length, 'Heavy Fire', '<img src="img/power-icons/munitions/Munitions_HeavyFire.png" />&nbsp;Heavy Fire', 2, 7, pow++, 1, heavyFire.power);
@@ -7693,6 +7725,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Aggressi
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, 'PVD: Qularr Toxic Assault', 'PVD: Qularr Toxic Assault', 0, null, heavyFire.qularrToxicAssault));
 
 const suppressionFire = {
   power: 
@@ -8157,13 +8190,13 @@ const gatlingGun = {
   '<div>QULARR TOXIC BARRAGE</div>\
   <br>\
   <div class="popup-header">\
-    <div>Munitions<br>31 + 24 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
+    <div>Munitions<br>33 + 26 Energy every 0.5 sec<br>0.5 sec activate time (4 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>100 feet; 3 foot Cylinder</div>\
   </div><br>\
   MAINTAIN<br>\
   <ul>\
     <li>This device has different values if you own the Gatling Gun power.</li>\
-    <li>Deals 63 Toxic Damage 2 times every 0.5 sec.</li>\
+    <li>Deals 126 Toxic Damage every 0.5 sec.</li>\
     <li>Has a 10% chance every 0.5 sec to apply Deadly Poison to affected targets, causing 20 Toxic Damage every 1 sec for 16 sec. Stacks up to 5 times.</li>\
     <li>When fully maintained, spreads any of your Poison effects on your primary target to up to 3 foes within 10 ft. Refreshes the duration of your Poison effects on targets that these effects were spread to.</li>\
     <li>Goes on a 90 sec cooldown if you do not own the Gatling Gun power.</li>\
@@ -8782,13 +8815,13 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPower
 const leadTempest = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>22 + 16 Energy every 0.5 sec<br>0.5 sec activate time (5 max)</div>\
+    <div>Munitions<br>28 + 21 Energy every 0.5 sec<br>0.5 sec activate time (5 max)</div>\
     <div style="text-align:right;">Affects foe (5 max)<br>50 foot Sphere</div>\
   </div><br>\
   RANGED AOE DAMAGE<br><br>\
   MAINTAIN<br>\
   <ul>\
-    <li>Deals 90 Piercing Damage every 0.5 sec to all targets.</li>\
+    <li>Deals 100 Piercing Damage every 0.5 sec to all targets.</li>\
     <li>Has a 10% chance to miss targets within 30ft of you, and a 25% chance to miss targets more than 30ft away from you.</li>\
   </ul>',
 
@@ -8822,14 +8855,14 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPower
 const tacticalStrike = {
   power: 
   '<div class="popup-header">\
-    <div>Munitions<br>76 Energy cost<br>0.83 sec charge time (0.83 min)<br>0.67 sec activate time</div>\
+    <div>Munitions<br>71 Energy cost<br>0.83 sec charge time (0.83 min)<br>0.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe<br>100 feet<br>15 seconds recharge</div>\
   </div><br>\
   RANGED AOE DAMAGE - DISORIENT - KNOCK<br><br>\
   CHARGE<br>\
   <ul>\
     <li>This power must be fully charged to activate.</li>\
-    <li>After 2.5 sec, deals 1,085 Crushing Damage to foes within 15ft.</li>\
+    <li>After 2.5 sec, deals 603 Crushing Damage to foes within 15ft.</li>\
     <li>Knocks affected targets together 17ft and applies Disorient, reducing damage by 10% and movement speed by 50% for 12 sec.</li>\
   </ul>',
 
@@ -8858,7 +8891,8 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Blast Radius', 'Blast Radius', 1, null, tacticalStrike.blastRadius));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Stim Pack', 'Stim Pack', 2, null, tacticalStrike.stimPack));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
 //------------------------------------------------------------------------------
 // Munitions: Ultimates
@@ -11317,14 +11351,14 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPower
 const orbitalCannon = {
   power: 
   '<div class="popup-header">\
-    <div>Gadgeteering<br>94 Energy cost<br>2.33 sec charge time (2.33 min)<br>0.67 sec activate time</div>\
+    <div>Gadgeteering<br>90 Energy cost<br>2.33 sec charge time (2.33 min)<br>0.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe<br>100 feet<br>20 seconds recharge</div>\
   </div><br>\
   RANGED AOE DAMAGE - PLASMA BURN - KNOCK<br><br>\
   CHARGE<br>\
   <ul>\
     <li>This power must be fully charged to activate.</li>\
-    <li>When the power is activated, the ground lights up with the Cannon\\\'s target marker. After 4.5 sec, the Orbital Cannon deals 1,085 Particle Damage to foes within 10 ft.</li>\
+    <li>When the power is activated, the ground lights up with the Cannon\\\'s target marker. After 4.5 sec, the Orbital Cannon deals 1,145 Particle Damage to foes within 10 ft.</li>\
     <li>Knocks Down and applies Plasma Burn to affected targets, causing 24 Particle Damage every 1 sec for 16 sec. Stacks up to 5 times.</li>\
   </ul>',
 
@@ -11373,13 +11407,14 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Anvil of Dawn', 'Anvil of Dawn', 2, null, orbitalCannon.anvilOfDawn));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Nuclear Fallout', 'Nuclear Fallout', 2, null, orbitalCannon.nuclearFallout));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'UPVD: Ultimate Orbital Cannon', 'UPVD: Ultimate Orbital Cannon', 0, null, orbitalCannon.ultimateOrbitalCannon));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, 'UPVD: Ultimate Orbital Cannon', 'UPVD: Ultimate Orbital Cannon', 0, null, orbitalCannon.ultimateOrbitalCannon));
 
 const strafingRun = {
   power: 
   '<div class="popup-header">\
-    <div>Gadgeteering<br>138 Energy cost<br>1.67 sec activate time</div>\
+    <div>Gadgeteering<br>117 Energy cost<br>1.67 sec activate time</div>\
     <div style="text-align:right;">Targets foe<br>100 feet<br>20 seconds recharge</div>\
   </div><br>\
   RANGED AOE DAMAGE - BURNING<br><br>\
@@ -11413,7 +11448,8 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Chemical Fire', 'Chemical Fire', 1, null, strafingRun.chemicalFire));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Explosive Rounds', 'Explosive Rounds', 2, null, strafingRun.explosiveRounds));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 
 const detonatorSwitch = {
   power: 
@@ -28275,7 +28311,7 @@ dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(4, 'Evasion', '<img src="img/spec-icons/superstat/dexterity/Specialization_Evasion.png" />&nbsp;Evasion', 2, 2, 'Your Secondary Super Stats now grant Avoidance Rating.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(5, 'Deadly Aim', '<img src="img/spec-icons/superstat/dexterity/Specialization_DeadlyAim.png" />&nbsp;Deadly Aim', 2, 3, 'Your Secondary Super Stats now increase your Critical Severity.'));
-dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Expose Weakness', '<img src="img/spec-icons/superstat/dexterity/Specialization_ExposeWeakness.png" />&nbsp;Expose Weakness', 2, 2, 'Whenever you Critically Strike a foe, you reduce their Resistance to your attacks by 1/2% for 10 seconds. This effect stacks up to 5 times.'));
+dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Expose Weakness', '<img src="img/spec-icons/superstat/dexterity/Specialization_ExposeWeakness.png" />&nbsp;Expose Weakness', 2, 2, 'Whenever you Critically Strike a foe, you reduce their Resistance to your attacks by 1/2% for 10 seconds. This effect stacks up to 5 times. <br><br> When used against Cosmic ranked targets, this effect can no longer stack more than once on the target, but whenever you Critically Strike a foe, you gain a stack of Analysing Weakness, which reduces their resistance to your attacks by 1%. This effect stacks up to 5 times.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(7, 'Quick Reflexes', '<img src="img/spec-icons/superstat/dexterity/Specialization_QuickReflexes.png" />&nbsp;Quick Reflexes', 2, 3, 'Your Dexterity now grants Dodge Chance Rating.'));
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(8, 'Dexterity Mastery', '<img src="img/spec-icons/superstat/dexterity/Specialization_DexterityMastery.png" />&nbsp;Dexterity Mastery', 3, 1, 'You gain 20 Dexterity and 10 Critical Severity and Avoidance Rating.'));
@@ -28515,7 +28551,7 @@ dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(4, 'Retribution', '<img src="img/spec-icons/role/guardian/Specialization_Retribution.png" />&nbsp;Retribution', 2, 2, 'Single Target attacks made against you have a 10% chance to trigger Retribution on you for 6s, which grants you +5/10% all damage strength and +30/60 Health Points every 2 sec.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(5, 'Tenacious', '<img src="img/spec-icons/role/guardian/Specialization_Tenacious.png" />&nbsp;Tenacious', 2, 2, 'Whenever you take damage, you gain 5/10 Offense. This effect lasts 15s, stacks up to 5 times, and can only occur once per second.'));
-dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Find the Mark', '<img src="img/spec-icons/role/guardian/Specialization_FindTheMark.png" />&nbsp;Find the Mark', 2, 3, 'Your Ranged attacks have a 10/20/30% chance to Expose your target. Expose increases your chance to Critically Strike that target with Ranged attacks by 3% for 10s and stacks up to 3 times.'));
+dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Find the Mark', '<img src="img/spec-icons/role/guardian/Specialization_FindTheMark.png" />&nbsp;Find the Mark', 2, 3, 'Your Ranged attacks have a 10/20/30% chance to Expose your target, increasing your chance to Critically STrike that target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times. <br><br> When used against a Cosmic ranked target, your Ranged attacks instead have a 10/20/30% chance to apply Find the Mark on you, increasing your chance to Critically Strike a Cosmic ranked target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(7, 'The Best Defense', '<img src="img/spec-icons/role/guardian/Specialization_TheBestDefense.png" />&nbsp;The Best Defense', 2, 3, 'You gain 33/67/100% of your Defense from gear as Offense.'));
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(8, 'Guardian Mastery', '<img src="img/spec-icons/role/guardian/Specialization_GuardianMastery.png" />&nbsp;Guardian Mastery', 3, 1, 'Your Blast powers give you a stack of Alacrity, which reduces the charge time of Blast powers by 3% and grants you 9 Dodge Chance Rating. Alacrity stacks up to 3 times.'));

@@ -5,13 +5,13 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-03 22:00:00 (woof-wolf)>
+ * Time-stamp: <2026-09-23 02:40:00 (woof-wolf)>
  *============================================================================*/
 
 var debug = false;
-var version = '1.5.1b';
-var releaseDate = '2026-09-03';
-var buildVersion = 5;
+var version = '1.6.0';
+var releaseDate = '2026-09-23';
+var buildVersion = 6;
 
 var siteName = 'PowerHouse';
 var siteUrl = 'https://woof-wolf.github.io/powerhouse/';
@@ -1866,6 +1866,10 @@ function selectPowerAllowed(num, id) {
                 otherCount++;
             } else if (p.name == 'Compassion' || p.name == 'Concentration') {
                 // IN-GAME BUG: Compassion and Concentration don't count for Power Set nor Framework.
+                // Concentration update: Concentration now correctly counts for Munitions set only.
+                if (p.name == 'Concentration' && power.framework == 7) {
+                    frameworkCount++;
+                }
                 otherCount++;
             } else {
                 if (p.powerSet == power.powerSet) powerSetCount++;

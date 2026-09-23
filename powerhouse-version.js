@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-03 06:40:00 (woof-wolf)>
+ * Time-stamp: <2026-09-23 02:40:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -971,6 +971,46 @@ dataVersionUpdate[dataVersionUpdate.length] = new VersionUpdate(
             // b0001 1110 + b0001 0000 = b0010 1110 
             // TODO: Maybe make const variables for adding 3rd adv, 4th adv, etc. to avoid magic numbers.
             if (value['type'] == 'power' && codeNum1 == 9 && codeNum2 == 42) return value['mask'] + (value['mask']&16);
+        
+            return value['mask'];
+        case 'specializationTree': return value['specializationTree'];
+        case 'specialization': return value['specialization'];
+        }
+});
+
+// Version 5 => 6
+// Addition of Challenge advantage to Tactical Strike, Strafing Run, and Orbital Cannon.
+dataVersionUpdate[dataVersionUpdate.length] = new VersionUpdate(
+    dataVersionUpdate.length, 5,
+    function(thing, value) {
+        var codeNum1 = (value['code1'] == undefined) ? 0 : urlCodeToNum(value['code1']); // framework
+        var codeNum2 = (value['code2'] == undefined) ? 0 : urlCodeToNum(value['code2']); // power
+        // var codeNum3 = (value['code3'] == undefined) ? 0 : urlCodeToNum(value['code3']);
+        // var codeNum4 = (value['code4'] == undefined) ? 0 : urlCodeToNum(value['code4']);
+        switch (thing) {
+        case 'data': return value['data'];
+        case 'pos': return value['pos'];
+        case 'i': return value['i'];
+        case 'inc': return value['inc'];
+        case 'code1': return value['code1'];
+        case 'code2': return value['code2'];
+        case 'code3': return value['code3'];
+        case 'code4': return value['code4'];
+        case 'archetype': return value['archetype'];
+        case 'superStat': return value['superStat'];
+        case 'innateTalent': return value['innateTalent'];
+        case 'talent': return value['talent'];
+        case 'CAMS': return value['CAMS'];
+        case 'travelPower': return value['travelPower'];
+        case 'framework': return value['framework'];
+        case 'power': return value['power'];
+        case 'mask': 
+            // Add Tactical Strike: Challenge
+            if (value ['type'] == 'power' && codeNum1 == 7 && codeNum2 == 42) return value['mask'] + (value['mask']&32);
+            // Add Strafing Run: Challenge
+            if (value ['type'] == 'power' && codeNum1 == 9 && codeNum2 == 42) return value['mask'] + (value['mask']&32);
+            // Add Orbital Cannon: Challenge
+            if (value ['type'] == 'power' && codeNum1 == 9 && codeNum2 == 41) return value['mask'] + (value['mask']&96);
         
             return value['mask'];
         case 'specializationTree': return value['specializationTree'];

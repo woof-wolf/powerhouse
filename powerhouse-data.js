@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-23 02:40:00 (woof-wolf)>
+ * Time-stamp: <2026-09-23 03:10:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -28551,7 +28551,7 @@ dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(4, 'Retribution', '<img src="img/spec-icons/role/guardian/Specialization_Retribution.png" />&nbsp;Retribution', 2, 2, 'Single Target attacks made against you have a 10% chance to trigger Retribution on you for 6s, which grants you +5/10% all damage strength and +30/60 Health Points every 2 sec.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(5, 'Tenacious', '<img src="img/spec-icons/role/guardian/Specialization_Tenacious.png" />&nbsp;Tenacious', 2, 2, 'Whenever you take damage, you gain 5/10 Offense. This effect lasts 15s, stacks up to 5 times, and can only occur once per second.'));
-dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Find the Mark', '<img src="img/spec-icons/role/guardian/Specialization_FindTheMark.png" />&nbsp;Find the Mark', 2, 3, 'Your Ranged attacks have a 10/20/30% chance to Expose your target, increasing your chance to Critically STrike that target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times. <br><br> When used against a Cosmic ranked target, your Ranged attacks instead have a 10/20/30% chance to apply Find the Mark on you, increasing your chance to Critically Strike a Cosmic ranked target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times.'));
+dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Find the Mark', '<img src="img/spec-icons/role/guardian/Specialization_FindTheMark.png" />&nbsp;Find the Mark', 2, 3, 'Your Ranged attacks have a 10/20/30% chance to Expose your target, increasing your chance to Critically Strike that target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times. <br><br> When used against a Cosmic ranked target, your Ranged attacks instead have a 10/20/30% chance to apply Find the Mark on you, increasing your chance to Critically Strike a Cosmic ranked target with Ranged attacks by 3% for 10 sec. Stacks up to 3 times.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(7, 'The Best Defense', '<img src="img/spec-icons/role/guardian/Specialization_TheBestDefense.png" />&nbsp;The Best Defense', 2, 3, 'You gain 33/67/100% of your Defense from gear as Offense.'));
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(8, 'Guardian Mastery', '<img src="img/spec-icons/role/guardian/Specialization_GuardianMastery.png" />&nbsp;Guardian Mastery', 3, 1, 'Your Blast powers give you a stack of Alacrity, which reduces the charge time of Blast powers by 3% and grants you 9 Dodge Chance Rating. Alacrity stacks up to 3 times.'));

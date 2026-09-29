@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-23 03:10:00 (woof-wolf)>
+ * Time-stamp: <2026-09-29 09:10:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -19634,7 +19634,23 @@ const arcOfRuin = {
     <li>Refreshes all <strong>Clinging Flames</strong> on your targets.</li>\
     <li><strong>Knocks Down</strong> all targets.</li>\
   </ul>\
-  </div>'
+  </div>',
+
+  arcOfLight:
+  '<div>ARC OF LIGHT</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Heavy Weapon<br>63-95 Energy cost<br>1.17 sec charge time<br>0.83 sec activate time</div>\
+    <div style="text-align:right;">Affects foe (5 max)<br>15 foot Sphere</div>\
+  </div><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>This device has different values if you own the Arc of Ruin power.</li>\
+    <li>Deals 221-527 Dimensional Damage to targets and has a 25-60% chance to apply Illuminated on affected targets for 20 sec.</li>\
+    <li>Anyone attacking a target affected by Illuminated has a 20% chance to be affected by Mend, healing them for +78 Health Points every 2 sec for 8 sec.</li>\
+    <li>Attacking a target affected by Devoid will grant you the Illumination buff, increasing the direct healing you receive by 3% for 20 sec.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Arc of Ruin power.</li>\
+  </ul>'
 };
 
 dataPower[dataPower.length] = new Power(dataPower.length, 'Arc of Ruin', '<img src="img/power-icons/heavy-weapon/HeavyWeapon_ArcOfRuin.png" />&nbsp;Arc of Ruin', 5, 17, pow++, 2, arcOfRuin.power);
@@ -19645,6 +19661,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'No Quart
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Wildfire', 'Wildfire', 2, null, arcOfRuin.wildfire));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, 'PVD: Arc of Light', 'PVD: Arc of Light', 0, null, arcOfRuin.arcOfLight));
 
 const skullcrusher = {
   power: 

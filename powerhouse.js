@@ -5,13 +5,13 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-29 09:10:00 (woof-wolf)>
+ * Time-stamp: <2026-10-29 13:15:00 (woof-wolf)>
  *============================================================================*/
 
 var debug = false;
-var version = '1.6.1';
-var releaseDate = '2026-09-29';
-var buildVersion = 6;
+var version = '1.7.0';
+var releaseDate = '2026-10-29';
+var buildVersion = 7;
 
 var siteName = 'PowerHouse';
 var siteUrl = 'https://woof-wolf.github.io/powerhouse/';

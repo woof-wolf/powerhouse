@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-29 09:10:00 (woof-wolf)>
+ * Time-stamp: <2026-10-29 13:15:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -15148,8 +15148,8 @@ const cutDown = {
   '<div>\
   DELAYED ATTACK<br>\
   <ul>\
-    <li>Applies <strong>Jinxed</strong> to your target, causing them to move slower and deal less damage.</li>\
-    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down.</li>\
+    <li>This power now applies <strong>Jinxed</strong> to affected targets, causing them to move slower and deal less damage.</li>\
+    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down and take <strong>Magic</strong> damage.</li>\
     <li><strong>Jinxed</strong> is a type of <strong>Curse</strong>.</li>\
   </ul>\
   </div>'
@@ -15862,6 +15862,123 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPower
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
 
+const rapidStrikes = {
+  power: 
+  '<div class="popup-header">\
+    <div>Unarmed<br><br>MELEE AOE DAMAGE - SUDDEN STRIKE - COMBO<br><br>CLICK</div>\
+  </div>\
+  <hr>\
+  <div class="popup-header">\
+    <div>FIRST ACTIVATION<br>18 Energy cost<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 90 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 148 Crushing Damage.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>SECOND ACTIVATION<br>17 Energy cost<br>0.3 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 90 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 102 Crushing Damage.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>THIRD ACTIVATION<br>15 Energy cost<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 30 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 199 Crushing Damage to targets and applies Sudden Strike to you for up to 10 sec, increasing the Critical Severity of your next critical hit by 10%. Expires once you get a critical hit.</li>\
+  </ul>',
+
+  demolishingStrikes:
+  '<div>\
+  DEMOLISHING STRIKES<br>\
+  <ul>\
+    <li>Completing a combo with this power now applies <strong>Demolish</strong> to your primary target, which reduces your target\\\'s Crushing resistance for a short time.</li>\
+  </ul>\
+  </div>',
+
+  harnessEnergy:
+  '<div>\
+  HARNESS ENERGY<br>\
+  <ul>\
+    <li>When completing a combo with this power, applies <strong>Harness Energies</strong>, increasing your chance to critically hit. All stacks of the buff are removed upon a successful critical hit.</li>\
+    <li><strong>Harness Energy</strong> is a <strong>Chi Energy</strong> effect.</li>\
+  </ul>\
+  </div>',
+
+  poisedToStrike:
+  '<div>\
+  POISED TO STRIKE<br>\
+  <ul>\
+    <li>If you are affected by <strong>Sudden Strike</strong>, every attack of this combo reapplies the effect.</li>\
+  </ul>\
+  </div>',
+
+  powerStrike:
+  '<div>\
+  POWER STRIKE<br>\
+  <ul>\
+    <li>When completing a combo, <strong>Knocks Down</strong> your primary target.</li>\
+  </ul>\
+  </div>',
+
+  enchantedStrikes:
+  '<div>ENCHANTED STRIKES</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Unarmed<br><br>CLICK</div>\
+  </div>\
+  <ul>\
+    <li>Jinxed causes -10% all damage strength and -35% Run Speed for 8 sec to affected targets.</li>\
+    <li>When Jinxed expires, targets take 380 Magic Damage and are Knocked Down.</li>\
+    <li>This device has different values if you own the Rapid Strikes power.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Rapid Strikes power.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>FIRST ACTIVATION<br>18 Energy cost<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 90 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 117 Magic Damage and has a 20% chance to apply Jinxed to affected targets.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>SECOND ACTIVATION<br>16 Energy cost<br>0.3 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 90 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 117 Magic Damage and has a 20% chance to apply Jinxed to affected targets.</li>\
+  </ul>\
+  <hr>\
+  <div class="popup-header">\
+    <div>FIRST ACTIVATION<br>15 Energy cost<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 30 degree Cone</div>\
+  </div>\
+  <ul>\
+    <li>Deals 117 Magic Damage and has a 40% chance to apply Jinxed to affected targets.</li>\
+    <li>If you own multiple Circle powers, creates one at your location based on your current role. The circle summoned will inherit any advantages and ranks you have purchased. If this effect is used, the cost of this power is increased.</li>\
+    <li>Circle of Arcane Power if you are in Hybrid Role. Circle of Ebon Wrath if you are in Ranged or Melee Role. Circle of Primal Dominion if you are in Tank Role. Circle of Radiant Glory if you are in Support Role.</li>\
+    <li>If you only own one Circle power, creates it at your location regardless of your role.</li>\
+  </ul>'
+};
+
+dataPower[dataPower.length] = new Power(dataPower.length, 'Rapid Strikes', '<img src="img/power-icons/unarmed/Unarmed_RapidStrikes.png" />&nbsp;Rapid Strikes', 3, 14, pow++, 0, rapidStrikes.power);
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(1, dataPowerAlias['R2'].name, dataPowerAlias['R2'].desc, 2, null, dataPowerAlias['R2'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(2, dataPowerAlias['R3'].name, dataPowerAlias['R3'].desc, 2, 1, dataPowerAlias['R3'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(3, 'Demolishing Strikes', 'Demolishing Strikes', 2, null, rapidStrikes.demolishingStrikes));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Harness Energy', 'Harness Energy', 2, null, rapidStrikes.harnessEnergy));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Poised to Strike', 'Poised to Strike', 1, null, rapidStrikes.poisedToStrike));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Power Strike', 'Power Strike', 1, null, rapidStrikes.powerStrike));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['BRK'].name, dataPowerAlias['BRK'].desc, 3, null, dataPowerAlias['BRK'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(10, 'PVD: Enchanted Strikes', 'PVD: Enchanted Strikes', 0, null, rapidStrikes.enchantedStrikes));
+
 //------------------------------------------------------------------------------
 // Unarmed: Tier 1
 //------------------------------------------------------------------------------
@@ -15930,7 +16047,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPower
 const oneHundredHands = {
   power: 
   '<div class="popup-header">\
-    <div>Unarmed<br>14 + 15 Energy every 0.5 sec<br>0.5 sec activate time (2.5 max)</div>\
+    <div>Unarmed<br>14 + 15 Energy every 0.5 sec<br>0.5 sec activate time (3 max)</div>\
     <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 120 degree Cone</div>\
   </div><br>\
   MELEE AOE DAMAGE<br><br>\
@@ -15966,7 +16083,23 @@ const oneHundredHands = {
     <li>You unleash chi energy while using this power, causing every other tick of damage this power deals to instead be dealt as <strong>Dimensional Damage</strong>.</li>\
     <li>These <strong>Ghostly Strikes</strong> do more damage than the normal strikes and are a <strong>Chi Power</strong> effect.</li>\
   </ul>\
-  </div>'
+  </div>',
+
+  thousandSpells:
+  '<div>THOUSAND SPELLS</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Unarmed<br>19 + 16 Energy every 0.5 sec<br>0.5 sec activate time (3 max)</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>10 feet; 120 degree Cone</div>\
+  </div><br>\
+  MAINTAIN\
+  <ul>\
+    <li>This device has different values if you own the One Hundred Hands power.</li>\
+    <li>Deals 77-134 Dimensional Damage (based on number of targets) every 0.5 sec to targets in front of you.</li>\
+    <li>Has a 10% chance to apply Bane to affected targets. If this power is fully maintained, the final hit has a 60% chance to apply the effect.</li>\
+    <li>Bane can apply the following effects: Bleeding, Chilled, Clinging Flames, Confuse, Deadly Poison, Debilitating Poison, Demolish, Dependency, Disintegrate, Disorient, Fear, Hexed, Plasma Burn, Stagger, Stress.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the One Hundred Hands power.</li>\
+  </ul>',
 };
 
 dataPower[dataPower.length] = new Power(dataPower.length, 'One Hundred Hands', '<img src="img/power-icons/unarmed/Unarmed_OneHundredHands.png" />&nbsp;One Hundred Hands', 3, 14, pow++, 1, oneHundredHands.power);
@@ -15978,6 +16111,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Flaming 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Ghostly Strikes', 'Ghostly Strikes', 1, null, oneHundredHands.ghostlyStrikes));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, 'PVD: Thousand Spells', 'PVD: Thousand Spells', 0, null, oneHundredHands.thousandSpells));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Inexorable Tides'].name, dataPowerAlias['Inexorable Tides'].desc, 3, 14, pow++, 1, dataPowerAlias['Inexorable Tides'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -16417,7 +16551,25 @@ const burningChiFist = {
     <li>You unleash chi energy while using this power, causing half of the damage this power deals to instead be dealt as <strong>Dimensional Damage</strong>.</li>\
     <li>The <strong>Dimensional</strong> damage portion of the attack deals slightly more damage than the <strong>Crushing</strong> portion and is a <strong>Chi Power</strong> effect.</li>\
   </ul>\
-  </div>'
+  </div>',
+
+  sorcerersFist:
+  '<div>SORCERER\\\'S FIST</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Unarmed<br>50-74 Energy cost<br>0.83 sec charge time<br>0.67 sec activate time</div>\
+    <div style="text-align:right;">Targets foe<br>10 feet</div>\
+  </div><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>This device has different values if you own the Burning Chi Fist power.</li>\
+    <li>Deals 297-633 Magic Damage and has a 24-53% chance to apply Mystified to you for 15 sec, reducing the cost of your Mystic powers by 3%. Stacks up to 3 times.</li>\
+    <li>When you directly damage a target affected by a Curse while affected by Mystified, heals you for 100 Health. This effect can occur once every 1 sec and does not stack.</li>\
+    <li>When you have at least 1 stack of Mystified, and your target is affected by Hexed, this power\\\'s base damage is increased by 30%.</li>\
+    <li>When you have at least 2 stacks of Mystified, and if you have Warlock\\\'s Blades summoned, fully charging this power increases their duration by 10 sec. This cannot exceed the max duration of the power.</li>\
+    <li>When you are at 3 stacks of Mystified, and if you are affected by a Circle, applies Arcane Knowledge on you for 15 sec, which prevents any debuffs that a circle power may apply to you.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Burning Chi Fist power.</li>\
+  </ul>'
 };
 
 dataPower[dataPower.length] = new Power(dataPower.length, 'Burning Chi Fist', '<img src="img/power-icons/unarmed/Unarmed_BurningChiFist.png" />&nbsp;Burning Chi Fist', 3, 14, pow++, 3, burningChiFist.power);
@@ -16429,6 +16581,7 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(4, 'Shatteri
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(5, 'Ghostly Strikes', 'Ghostly Strikes', 1, null, burningChiFist.ghostlyStrikes));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, 'PVD: Sorcerer\'s Fist', 'PVD: Sorcerer\'s Fist', 0, null, burningChiFist.sorcerersFist));
 
 const dragonUppercut = {
   power: 
@@ -16532,6 +16685,22 @@ const openPalmStrike = {
   </ul>\
   </div>',
 
+  arcanePalmStrike:
+  '<div>ARCANE PALM STRIKE</div>\
+  <br>\
+  <div class="popup-header">\
+    <div>Unarmed<br>35-75 Energy cost<br>1.5 sec charge time<br>0.5 sec activate time</div>\
+    <div style="text-align:right;">Targets foe (5 max)<br>25 feet; 4 foot Cylinder</div>\
+  </div><br>\
+  CHARGE<br>\
+  <ul>\
+    <li>This device has different values if you own the Open Palm Strike power.</li>\
+    <li>Deals 163-638 Magic Damage and has a 15-60% chance to Stun your target for 1.7 sec.</li>\
+    <li>If you are affected by an Enchantment, fully charging this power applies Hexed to your primary target, reducing their resistance to Magic damage by 18% for 15 sec. Has a 30% chance to apply to secondary targets.</li>\
+    <li>If your target is already affected by your Hexed, refreshes the duration.</li>\
+    <li>Goes on a 90 sec cooldown if you do not own the Open Palm Strike power.</li>\
+  </ul>',
+
   ultimateOpenPalmStrike:
   '<div>ULTIMATE OPEN PALM STRIKE</div>\
   <br>\
@@ -16560,7 +16729,8 @@ dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(6, 'Ghostly 
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(7, dataPowerAlias['NttG'].name, dataPowerAlias['NttG'].desc, 2, null, dataPowerAlias['NttG'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(8, dataPowerAlias['AM'].name, dataPowerAlias['AM'].desc, 1, null, dataPowerAlias['AM'].tip));
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(9, dataPowerAlias['CHAL'].name, dataPowerAlias['CHAL'].desc, 1, null, dataPowerAlias['CHAL'].tip));
-dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(10, 'UPVD: Ultimate Open Palm Strike', 'UPVD: Ultimate Open Palm Strike', 0, null, openPalmStrike.ultimateOpenPalmStrike));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(10, 'PVD: Arcane Palm Strike', 'PVD: Arcane Palm Strike', 0, null, openPalmStrike.arcanePalmStrike));
+dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(11, 'UPVD: Ultimate Open Palm Strike', 'UPVD: Ultimate Open Palm Strike', 0, null, openPalmStrike.ultimateOpenPalmStrike));
 
 dataPower[dataPower.length] = new Power(dataPower.length, dataPowerAlias['Shuriken Storm'].name, dataPowerAlias['Shuriken Storm'].desc, 3, 14, pow++, 3, dataPowerAlias['Shuriken Storm'].tip);
 dataPower[dataPower.length-1].advantageList.push(new PowerAdvantage(0, null, null, null, null, null));
@@ -22382,10 +22552,9 @@ const crashingIncantation = {
   ULTIMATE<br><br>\
   CHARGE<br>\
   <ul>\
-    <li>Deals 846 Magic Damage.</li>\
-    <li>Applies Overpower which reduces all damage resistance on foes by 20% for 15 sec.</li>\
-    <li>Applies Jinxed to foes, causing -10% all damage strength and -35% Run Speed for 8 sec to affected targets.</li>\
-    <li>When Jinxed expires, targets are Knocked Down.</li>\
+    <li>Deals 846 Magic Damage and applies <strong>Overpower</strong>, reducing all damage resistance on foes by 20% for 15 sec.</li>\
+    <li>Applies <strong>Jinxed</strong> to affected targets, causing -10% all damage strength and -35% Run Speed for 8 sec.</li>\
+    <li>When <strong>Jinxed</strong> expires, targets take 380 Magic Damage and are <strong>Knocked Down</strong>.</li>\
   </ul>'
 };
 
@@ -24358,8 +24527,8 @@ const eldritchBlast = {
   CHARGE<br>\
   <ul>\
     <li>Deals 129-507 Magic Damage.</li>\
-    <li>Has a 12-50% chance to apply Mystified to you for 15 sec.</li>\
-    <li>Mystified reduces the cost of your Sorcery, Celestial, Darkness and Infernal powers by 3%. Can stack up to 3 times.</li>\
+    <li>Has a 25-100% chance to apply Mystified to you for 15 sec, reducing the cost of your Mystic Framework powers by 3%. Stacks up to 3 times.</li>\
+    <li>When you are affected by Mystified and you directly damage a target affected by a Curse, heals you for 100 Health. This effect can occur once every 1 sec and does not stack.</li>\
   </ul>',
 
   sorcerorsWhim:
@@ -24393,8 +24562,8 @@ const eldritchBlast = {
   '<div>\
   BAD LUCK<br>\
   <ul>\
-    <li>Gives Eldritch Blast a chance to <strong>Jinx</strong> the target.</li>\
-    <li><strong>Jinxed</strong> reduces a target\\\'s damage and movement speed briefly, and when the debuff expires, they are <strong>Knocked</strong> down.</li>\
+    <li>Gives this power a chance to apply <strong>Jinxed</strong> to your target, causing them to move slower and deal less damage.</li>\
+    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down and take <strong>Magic</strong> damage.</li>\
     <li><strong>Jinxed</strong> is a type of <strong>Curse</strong>.</li>\
   </ul>\
   </div>'
@@ -24594,8 +24763,8 @@ const pillarOfPoz = {
   '<div>\
   DILEMMA<br>\
   <ul>\
-    <li>Pillar of Poz now applies <strong>Jinxed</strong> to affected targets.</li>\
-    <li><strong>Jinxed</strong> reduces a target\\\'s damage and movement speed briefly, and when the debuff expires, they are <strong>Knocked</strong> down.</li>\
+    <li>This power now applies <strong>Jinxed</strong> to affected targets, causing them to move slower and deal less damage.</li>\
+    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down and take <strong>Magic</strong> damage.</li>\
     <li><strong>Jinxed</strong> is a type of <strong>Curse</strong>.</li>\
   </ul>\
   </div>',
@@ -24604,7 +24773,7 @@ const pillarOfPoz = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Gives Pillar of Poz a chance to apply and refresh all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>Gives this power a chance to apply and refresh <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>',
@@ -24997,8 +25166,8 @@ const invocationOfStormCalling = {
   <ul>\
     <li>While maintained, foes within 25 ft of you suffer 161 Magic Damage.</li>\
     <li>Upon being fully maintained, foes within 25 ft of you are struck by a magical blast that deals 301 Magic Damage to them and 151 Magic Damage to other foes within 10 ftt of them.</li>\
-    <li>Upon being fully maintained applies Jinxed to foes.</li>\
-    <li>Jinxed causes -10% all damage strength and -35% Run Speed for 8 sec to affected targets. When Jinxed expires targets are Knocked down.</li>\
+    <li>Upon being fully maintained, applies Jinxed to affected targets.</li>\
+    <li>Jinxed causes -10% all damage strength and -35% Run Speed for 8 sec to affected targets. When Jinxed expires, targets take 380 Magic Damage and are Knocked Down.</li>\
   </ul>',
 
   strongWinds:
@@ -25030,7 +25199,7 @@ const invocationOfStormCalling = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Upon a full maintain, your storm now applies and refreshes all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>When fully maintained, this power applies and refreshes <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>'
@@ -25080,7 +25249,7 @@ const skarnsBane = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Gives Skarn\\\'s Bane a chance to apply and refresh all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>Gives this power a chance to apply and refresh <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>',
@@ -25134,7 +25303,7 @@ const starBarrage = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Gives Star Barrage a chance to apply and refresh all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>Gives this power a chance to apply and refresh <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>'
@@ -25462,7 +25631,7 @@ const arcaneVitality = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Gives Arcane Vitality a chance to apply and refresh all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>Gives this power a chance to apply and refresh <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>'
@@ -25543,7 +25712,8 @@ const circleOfEbonWrath = {
   CHARGE<br>\
   <ul>\
     <li>Upon a full charge, summons a Circle of Ebon Wrath at your location.</li>\
-    <li>While standing in the Circle of Ebon Wrath you gain +20% all damage strength, have -8.3% Threat Generation and +83% Perception.</li>\
+    <li>While standing in the Circle of Ebon Wrath you gain +20% all damage strength and +83% Perception.</li>\
+    <li>You also gain -8.3% Threat Generation. If you are in the Protector role, you instead gain +8.3% Threat Generation.</li>\
     <li>Healing effects on you are reduced by 100%.</li>\
     <li>Any foes that attack you or comes near the Circle of Ebon Wrath will be Feared causing them deal 10% less damage for 12 sec.</li>\
     <li>This Circle will persist for up to 2 sec while you are not standing in it.</li>\
@@ -25650,7 +25820,7 @@ const soulBeam = {
   '<div>\
   MYSTICAL<br>\
   <ul>\
-    <li>Gives Soul Beam a chance to apply and refresh all stacks of <strong>Mystified</strong> on you.</li>\
+    <li>Gives this power a chance to apply and refresh <strong>Mystified</strong> on you, reducing the cost of your <strong>Mystic Framework</strong> powers and healing you for a small amount when you strike a target affected by a <strong>Curse</strong>.</li>\
     <li><strong>Mystified</strong> is a type of <strong>Enchantment</strong>.</li>\
   </ul>\
   </div>'
@@ -27828,8 +27998,8 @@ const curse = {
   '<div>\
   JINX<br>\
   <ul>\
-    <li>Applies <strong>Jinxed</strong> to your target, causing them to move slower and deal less damage.</li>\
-    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down.</li>\
+    <li>This power now applies <strong>Jinxed</strong> to affected targets, causing them to move slower and deal less damage.</li>\
+    <li>After a short amount of time, targets affected by <strong>Jinxed</strong> are <strong>Knocked</strong> down and take <strong>Magic</strong> damage.</li>\
     <li><strong>Jinxed</strong> is a type of <strong>Curse</strong>.</li>\
   </ul>\
   </div>',
@@ -28550,7 +28720,7 @@ dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(4, 'Reactive Strikes', '<img src="img/spec-icons/role/warden/Specialization_ReactiveStrikes.png" />&nbsp;Reactive Strikes', 2, 2, 'Single Target attacks made against you have a 10% chance to deal 10/20% of that damage back to the attacker as Penetrating Damage. (Penetrating Damage is only resisted by Resistance to All Damage, and ignores half of that resistance. Penetrating Damage also ignores half of the absorption provided by Shields.)'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(5, 'Tenacious', '<img src="img/spec-icons/role/warden/Specialization_Tenacious.png" />&nbsp;Tenacious', 2, 2, 'Whenever you take damage, you gain 5/10 Offense. This effect lasts 15s, stacks up to 5 times, and can only occur once per second.'));
-dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Upper Hand', '<img src="img/spec-icons/role/warden/Specialization_UpperHand.png" />&nbsp;Upper Hand', 2, 3, 'Increases Melee damage you deal to targets affected by Demolish, Shredded, Disintegrate, No Quarter, Stress and Stagger by 2/4/6%.'));
+dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(6, 'Upper Hand', '<img src="img/spec-icons/role/warden/Specialization_UpperHand.png" />&nbsp;Upper Hand', 2, 3, 'Increases the Melee damage you deal to targets affected by your Resistance Debuffs by 2/4/6%.'));
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(7, 'The Best Defense', '<img src="img/spec-icons/role/warden/Specialization_TheBestDefense.png" />&nbsp;The Best Defense', 2, 3, 'You gain 33/67/100% of your Defense from gear as Offense.'));
 
 dataSpecializationTree[dataSpecializationTree.length-1].specializationList.push(new Specialization(8, 'Warden Mastery', '<img src="img/spec-icons/role/warden/Specialization_WardenMastery.png" />&nbsp;Warden Mastery', 3, 1, 'Increases the damage of your Combo powers by 10% and whenever you finish a Combo, you gain a stack of Grit. Grit increases your Damage Resistance by 3%, and stacks up to 3 times.'));

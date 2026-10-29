@@ -5,7 +5,7 @@
  *
  * Author: Kyle W T Sherman
  *
- * Time-stamp: <2026-09-23 02:40:00 (woof-wolf)>
+ * Time-stamp: <2026-10-29 13:15:00 (woof-wolf)>
  *============================================================================*/
 
 //==============================================================================
@@ -1011,6 +1011,49 @@ dataVersionUpdate[dataVersionUpdate.length] = new VersionUpdate(
             if (value ['type'] == 'power' && codeNum1 == 9 && codeNum2 == 42) return value['mask'] + (value['mask']&32);
             // Add Orbital Cannon: Challenge
             if (value ['type'] == 'power' && codeNum1 == 9 && codeNum2 == 41) return value['mask'] + (value['mask']&96);
+        
+            return value['mask'];
+        case 'specializationTree': return value['specializationTree'];
+        case 'specialization': return value['specialization'];
+        }
+});
+
+// Version 6 => 7
+// New power Rapid Strikes (T0) to Unarmed Martial Arts, UPVD: Ultimate Open Palm Strike moved to 11
+dataVersionUpdate[dataVersionUpdate.length] = new VersionUpdate(
+    dataVersionUpdate.length, 1,
+    function(thing, value) {
+        var codeNum1 = (value['code1'] == undefined) ? 0 : urlCodeToNum(value['code1']); // framework
+        var codeNum2 = (value['code2'] == undefined) ? 0 : urlCodeToNum(value['code2']); // power
+        // var codeNum3 = (value['code3'] == undefined) ? 0 : urlCodeToNum(value['code3']);
+        // var codeNum4 = (value['code4'] == undefined) ? 0 : urlCodeToNum(value['code4']);
+        switch (thing) {
+        case 'data': return value['data'];
+        case 'pos': return value['pos'];
+        case 'i': return value['i'];
+        case 'inc': return value['inc'];
+        case 'code1': return value['code1'];
+        case 'code2': return value['code2'];
+        case 'code3': return value['code3'];
+        case 'code4': return value['code4'];
+        case 'archetype': return value['archetype'];
+        case 'superStat': return value['superStat'];
+        case 'innateTalent': return value['innateTalent'];
+        case 'talent': return value['talent'];
+        case 'CAMS': return value['CAMS'];
+        case 'travelPower': return value['travelPower'];
+        case 'framework': return value['framework'];
+        case 'power':
+            var power = value['power'];
+            
+            // Add T0 power: Rapid Strikes
+            if (codeNum1 == 14 && codeNum2 > 2) power++;
+
+            return power;
+        case 'mask': 
+            // Add PVD: Arcane Palm Strike
+            // Use codes from previous version when updating despite also changing a power in the same update
+            if (value ['type'] == 'power' && codeNum1 == 14 && codeNum2 == 33) return value['mask'] + (value['mask']&(2 ** 10));
         
             return value['mask'];
         case 'specializationTree': return value['specializationTree'];
